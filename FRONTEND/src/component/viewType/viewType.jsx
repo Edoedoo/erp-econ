@@ -59,7 +59,7 @@ export function ListView({ data = [], columns = [] }) {
             }}
           >
             {columns.map((column) => (
-              <div key={column.key}>
+              <div key={column.key}  >
                 {renderCell(column, row)}
               </div>
             ))}
@@ -76,30 +76,35 @@ export function ListView({ data = [], columns = [] }) {
 // =====================================================
 
 export function KanbanView({ data = [], columns = [] }) {
+  return (
+    <>
+      {data.length === 0 ? (
+        <div>No data</div>
+      ) : (
+        <div className="kanban">
+          {data.map((row, index) => (
+            <div className="kanban-card" key={index}>
 
-    return (
-      <div className="kanban">
-        {data.map((row, index) => (
-          <div className="kanban-card" key={index}>
-  
-            {/* title ambil kolom pertama */}
-            <div className="kanban-title">
-              {renderCell(columns[0], row)}
+              {/* title ambil kolom pertama */}
+              <div className="kanban-title">
+                {renderCell(columns[0], row)}
+              </div>
+
+              <div className="kanban-body">
+                {columns.slice(1).map((column) => (
+                  <div key={column.key}>
+                    {column.label}: {renderCell(column, row)}
+                  </div>
+                ))}
+              </div>
+
             </div>
-  
-            <div className="kanban-body">
-              {columns.slice(1).map((column) => (
-                <div key={column.key}>
-                  {column.label}: {renderCell(column, row)}
-                </div>
-              ))}
-            </div>
-  
-          </div>
-        ))}
-      </div>
-    )
-  }
+          ))}
+        </div>
+      )}
+    </>
+  )
+}
 
 // =====================================================
 // 🔹 VIEW REGISTRY

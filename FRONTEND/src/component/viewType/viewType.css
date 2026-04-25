@@ -7,13 +7,24 @@
   
   .table-row {
     display: grid;
-    padding: 8px;
     border-bottom: 1px solid var(--color-border);
+    padding: 2px 20px;
+    cursor: pointer;
+    background: var(--color-bg-card);
+  }
+
+  .table-row:hover {
+    background: var(--color-bg-menu);
   }
   
   .table-header {
     font-weight: bold;
-    background: var(--color-bg-menu);
+    background: var(--color-border);
+    padding: 2px 20px;
+  }
+  .table-header:hover {
+    background: var(--color-border);
+    cursor: default;
   }
   
   .kanban {

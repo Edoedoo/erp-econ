@@ -1,4 +1,4 @@
-import { useLocation, useSearchParams } from "react-router-dom"
+import { useLocation, useSearchParams, Outlet } from "react-router-dom"
 import { resolvePath } from "../../../core/router/routerResolver"
 import { VIEW_TYPE } from "../../../component/viewType/viewType"
 
@@ -7,6 +7,9 @@ function ProductsPage () {
   const location = useLocation()
   const [params] = useSearchParams()
 
+  const segments = location.pathname.split("/").filter(Boolean)
+  const [modulePath, viewPath, action] = segments
+
   const { currentView } = resolvePath(location.pathname)
 
   const viewType =
@@ -14,23 +17,11 @@ function ProductsPage () {
 
   const ViewComponent = VIEW_TYPE[viewType]
 
-  // ✅ dummy data
-  const data = [
-    {
-      reference: "P001",
-      source_location: "WH/Stock",
-      destination_location: "Customers",
-      state: "draft",
-      scheduled_date: "2026-04-24"
-    },
-    {
-      reference: "P002",
-      source_location: "WH/Stock",
-      destination_location: "Customers",
-      state: "done",
-      scheduled_date: "2026-04-25"
-    }
-  ]
+  const data = []
+
+  if (action) {
+    return <Outlet />
+  }
 
   return (
     <ViewComponent

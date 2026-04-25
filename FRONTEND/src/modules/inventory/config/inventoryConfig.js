@@ -2,6 +2,7 @@ import InventoryPage from "../pages/InventoryPage"
 import ProductsPage from "../pages/ProductsPage"
 import { ACTIONS } from "../../../config/actions"
 import { col } from "../../../config/columnHelper"
+import { field } from "./fieldHelper"
 
 export const INVENTORY_MENU = {
   path: "inventory",
@@ -130,7 +131,6 @@ export const INVENTORY_MENU = {
     // =====================================================
     // 🔹 PRODUCTS
     // =====================================================
-
     {
       key: "products",
       name: "Products",
@@ -139,7 +139,7 @@ export const INVENTORY_MENU = {
       defaultView: "kanban",
       element: ProductsPage,
       group: "Products",
-
+    
       actions: [
         ACTIONS.CREATE,
         ACTIONS.IMPORT,
@@ -149,18 +149,25 @@ export const INVENTORY_MENU = {
         ACTIONS.VIEW,
         ACTIONS.DUPLICATE
       ],
-
+    
+      fields: [
+        field("name"),
+        field("reference"),
+        field("type"),
+        field("role"),
+        field("category"),
+        field("uom"),
+        field("price"),
+        field("cost"),
+        field("qty_available")
+      ],
+    
       columns: [
-        col("reference"),
-        col("source_location"),
-        col("destination_location"),
-        col("state"),
-        col("scheduled_date"),
-        col("reference"),
-        col("source_location"),
-        col("destination_location"),
-        col("state"),
-        col("scheduled_date")
+        col("name"),
+        col("type"),
+        col("category"),
+        col("price"),
+        col("qty_available")
       ]
     },
 

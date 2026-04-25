@@ -36,6 +36,8 @@ function BodyHeader() {
 
   const segments = location.pathname.split("/").filter(Boolean)
   const [modulePath, viewPath] = segments
+  
+  const isViewLevel = segments.length === 2
 
   const currentMenu = MENU_LIST.find(item =>
     item.module?.path === modulePath
@@ -46,7 +48,7 @@ function BodyHeader() {
   )
   const viewType = params.get("view_type") || currentView?.defaultView
 
-  const selectedIds = [{ id: "1", name: 'tester' }]
+  const selectedIds = []
 
   const context = {
     navigate, 
@@ -128,8 +130,8 @@ function BodyHeader() {
       </div>
 
       {/* ================= BOTTOM ================= */}
+      <div className="body-bottom">
       {selectedIds.length > 0 && (
-        <div className="body-bottom">
           <div className="body-bottom-left">
 
             <div className="action-contextual">
@@ -157,7 +159,8 @@ function BodyHeader() {
             </div>
 
           </div>
-          {currentView && (
+          )}
+          {isViewLevel && (
             <div className="body-bottom-right">
               <span
                 className={viewType === "list" ? "active" : ""}
@@ -174,8 +177,7 @@ function BodyHeader() {
               </span>
             </div>
           )}
-        </div>
-      )}
+          </div>
 
     </div>
   )

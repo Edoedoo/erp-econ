@@ -20,6 +20,11 @@ export const COLUMN_REGISTRY = {
       label: "Name",
       sortable: true
     },
+
+    type: {
+      key: "type",
+      label: "Type Product"
+    },
   
     code: {
       key: "code",
