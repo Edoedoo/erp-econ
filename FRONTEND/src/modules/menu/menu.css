@@ -1,0 +1,55 @@
+/* MAIN */
+.main-menu {
+    background: var(--color-bg-menu);
+    height: 100%;
+}
+/* WRAPPER GRID */
+.menu-grid {
+    padding-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 25px;
+    max-width: 800px;
+    margin: auto; 
+  }
+  
+  /* CARD */
+  .menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 20px 10px;
+    cursor: pointer;
+  
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 1px 3px var(--color-border);
+    transition: 0.2s;
+  }
+
+/* ICON */
+.menu-card img {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.menu-card h1 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* HOVER EFFECT */
+.menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    opacity: 0.95;
+  }
+  
+  /* ACTIVE CLICK */
+  .menu-card:active {
+    transform: scale(0.97);
+  }

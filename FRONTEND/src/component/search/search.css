@@ -1,0 +1,159 @@
+/* ======================
+   SEARCH BAR
+====================== */
+.search {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-menu);
+    padding: 4px 8px;
+  }
+  
+  .search input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    padding: 6px;
+    background: var(--color-bg-menu);
+    color: var(--color-primary);
+    font-weight: 700;
+    min-width: 300px;
+  }
+  /* ICON */
+  .btn-icon {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .btn-icon img {
+    display: flex;
+    width: 25px;
+  }
+  
+  
+  /* ======================
+     TAGS
+  ====================== */
+  .search-tags {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .markSearch {
+    display: flex;
+    align-items: center;
+    background: none;
+    color: var(--color-primary);
+    border-radius: 4px;
+    font-size: 12px;
+    min-width: 0;
+    max-width: 90px;
+    box-shadow: 0 1px 3px;
+  }
+  .markSearch span {
+    padding: 2px 6px;
+  
+    max-width: 120px;        
+    white-space: nowrap;     
+    overflow: hidden;      
+    text-overflow: ellipsis; 
+  
+    display: inline-block;   
+  }
+
+  .markSearch1 {
+    display: flex;
+    flex-shrink: 0;
+  }
+  .markSearch img {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    width: 11px;
+  }
+
+  
+  /* ======================
+     ACTION
+  ====================== */
+  .action-search {
+    display: flex;
+    padding: 6px 8px;
+    justify-content: end;
+  }
+  
+  .btn-action-search {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .btn-action-search button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+  }
+  
+  .btn-action-search button.active {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  
+  /* ======================
+     DROPDOWN
+  ====================== */
+  .dropdown-wrapper {
+    position: relative;
+  }
+  .dropdown-wrapper img {
+      display: flex;
+      height: 14px
+  }
+  
+  .dropdown-search {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+    min-width: 200px;
+    background: var(--color-bg-menu);
+    box-shadow: 0 1px 3px var(--color-border);
+    border-radius: 2px;
+    z-index: 999;
+    padding: 6px 0;
+    border: 1px solid var(--color-border);
+    min-height: 150px;
+  }
+  
+  /* GROUP */
+  .dropdown-group {
+    padding: 6px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid var(--color-border);
+  }
+  
+  /* TITLE */
+  .dropdown-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: 6px 12px;
+  }
+  
+  /* ITEM */
+  .dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.15s;
+  }
+  

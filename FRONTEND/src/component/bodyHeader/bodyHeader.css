@@ -1,0 +1,147 @@
+
+/* ======================
+   ROOT
+====================== */
+.body-header {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ======================
+   TOP SECTION (FIXED LAYOUT)
+====================== */
+.body-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 10px;
+  gap: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* LEFT */
+.body-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* RIGHT (LOCKED LIKE ODOO) */
+.body-right {
+  flex: 0 0 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ======================
+   BREADCRUMB
+====================== */
+.module-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+}
+
+.module-name h4 {
+  color: var(--color-primary);
+}
+
+.module-name span {
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 14px;
+}
+.module-name span:hover {
+  color: var(--color-text-main);
+}
+
+
+/* ======================
+   CENTER ACTIONS
+====================== */
+.body-center {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+}
+
+.action-primary,
+.action-secondary {
+  display: flex;
+  gap: 6px;
+}
+
+/* ======================
+   BUTTONS
+====================== */
+.btn-primary,
+.btn-secondary {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+  border: none;
+  padding: 3px 9px;
+  cursor: pointer;
+  border-radius: 1.5px;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background: var(--color-primary-active);
+}
+
+/* ======================
+   BOTTOM
+====================== */
+.body-bottom {
+  display: flex;
+  justify-content: space-between;
+
+}
+.body-bottom-left {
+  display: flex;
+  padding: 6px 10px;
+  gap: 15px;
+}
+
+.action-contextual {
+  display: flex;
+  gap: 5px;
+}
+
+.action-bulk {
+  display: flex;
+  gap: 15px;
+}
+.btn-bulk-secondary {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 12px;
+}
+.btn-bulk-secondary:hover {
+  color: var(--color-primary-active);
+}
+
+.body-bottom-right{
+  display: flex;
+  padding: 6px 10px;
+  gap: 7px;
+}
+.body-bottom-right span.active{
+  border-radius: 3px;
+  box-shadow: 0 1px 2px;
+  color: var(--color-primary-hover);
+}
+
+.body-bottom-right img {
+  display: flex;
+  width: 20px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.body-bottom-right img:hover {
+  background: var(--color-border);
+}

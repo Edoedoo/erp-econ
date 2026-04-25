@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="#3B82F6"/>
+
+  <!-- Letter E -->
+  <path d="M20 18 H42 V22 H24 V30 H38 V34 H24 V42 H42 V46 H20 Z" fill="#FFFFFF"/>
+
+  <!-- Accent X (di tengah subtle) -->
+  <path d="M28 22 L36 42 M36 22 L28 42" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"/>
+</svg>

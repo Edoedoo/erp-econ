@@ -1,0 +1,48 @@
+  /* APPLAYOUT */
+  #appLayout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* HEADER */
+  #header {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    background-color: var(--color-primary);
+  }
+
+  /* MAIN */
+  #main {
+    flex: 1;
+    overflow: auto;
+    background-color: var(--color-bg-main);
+  }
+
+  /* BODYLAYOUT */
+  #bodyLayout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-bg-main);
+  }
+  
+  /* BODYHEADER */
+  #body-header {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-menu);
+    padding: 10px 20px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  /* BODYCONTENT */
+  #body-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-bg-main);
+  }

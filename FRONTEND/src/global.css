@@ -1,0 +1,89 @@
+/* RESET DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    /* =========================
+       PRIMARY (Ungu Utama)
+    ========================= */
+    --color-primary: #73639d;
+    --color-primary-hover: #62538a;
+    --color-primary-active: #514575;
+    --color-primary-light: #8a7ab3;
+    --color-primary-soft: #f3f1fa;
+  
+    /* =========================
+       BACKGROUND
+    ========================= */
+    --color-bg-main: #f8f9fc;        /* putih agak abu */
+    --color-bg-card: #ffffff;
+    --color-bg-hover: #f1f2f7;
+    --color-bg-menu: #eef1f7;
+  
+    /* =========================
+       TEXT
+    ========================= */
+    --color-text-main: #2c2c2c;
+    --color-text-secondary: #6b6b6b;
+    --color-text-light: #ffffff;
+  
+    /* =========================
+       BORDER
+    ========================= */
+    --color-border: #e4e6ef;
+  
+    /* =========================
+       STATUS COLORS
+    ========================= */
+    --color-success: #4caf50;
+    --color-warning: #ff9800;
+    --color-danger: #f44336;
+    --color-info: #2196f3;
+
+    /* =========================
+       BUTTON COLORS
+    ========================= */
+    --color-button: #266856;
+    --color-button-hover: #3a8a75;
+  }
+
+  /* ROOT */
+  html, body, #root {
+    height: 100%;
+  }
+  
+  
+  
+  
+  /* BODY */
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+  }
+  
+  /* LINK */
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-light);
+  }
+  
+  /* BUTTON */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  /* INPUT */
+  input, select, textarea {
+    font-family: inherit;
+    outline: none;
+  }
