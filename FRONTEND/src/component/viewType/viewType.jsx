@@ -3,6 +3,7 @@
 // =====================================================
 
 import React from "react"
+import EmptyState from "../emptyState/emptyState"
 import "./viewType.css"
 // =====================================================
 // 🔹 HELPER
@@ -24,7 +25,7 @@ export const renderCell = (column, row) => {
 
 export function ListView({ data = [], columns = [] }) {
   if (!columns.length) {
-    return <div>No columns defined</div>
+    return <div><EmptyState /></div>
   }
 
   return (
@@ -47,7 +48,7 @@ export function ListView({ data = [], columns = [] }) {
       {/* Body */}
       {data.length === 0 ? (
         <div className="table-row">
-          <div>No data</div>
+          <div><EmptyState /></div>
         </div>
       ) : (
         data.map((row, index) => (
@@ -79,7 +80,7 @@ export function KanbanView({ data = [], columns = [] }) {
   return (
     <>
       {data.length === 0 ? (
-        <div>No data</div>
+        <div><EmptyState /></div>
       ) : (
         <div className="kanban">
           {data.map((row, index) => (

@@ -1,1 +1,9 @@
-<svg fill="#ffffff" viewBox="-4.8 -4.8 33.60 33.60" xmlns="http://www.w3.org/2000/svg" id="dashboard" class="icon glyph" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="-4.8" y="-4.8" width="33.60" height="33.60" rx="0.672" fill="#0EA5E9" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect x="2" y="2" width="9" height="11" rx="2"></rect><rect x="13" y="2" width="9" height="7" rx="2"></rect><rect x="2" y="15" width="9" height="7" rx="2"></rect><rect x="13" y="11" width="9" height="11" rx="2"></rect></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <rect width="50" height="50" rx="10" fill="#EFF6FF"/>
+  <g fill="#1E3A8A">
+    <rect x="10" y="12" width="12" height="10" rx="2"/>
+    <rect x="26" y="12" width="14" height="6" rx="2"/>
+    <rect x="10" y="26" width="14" height="12" rx="2"/>
+    <rect x="28" y="22" width="12" height="16" rx="2"/>
+  </g>
+</svg>

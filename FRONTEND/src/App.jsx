@@ -42,7 +42,7 @@ function App() {
                   if (!view) return null
 
                   const ViewPage =
-                    view.element || (() => <div>Coming Soon</div>)
+                    view.element || (() => <div><NotFound /></div>)
 
                   const actions = (view.actions || []).filter(
                     action => action && action.path
@@ -60,7 +60,7 @@ function App() {
                         if (!action) return null
 
                         const ActionPage =
-                          action.element || (() => <div>Coming Soon</div>)
+                          action.element || (() => <div><NotFound /></div>)
 
                         return (
                           <Route
