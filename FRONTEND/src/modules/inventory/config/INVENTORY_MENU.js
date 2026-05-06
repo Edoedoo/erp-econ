@@ -147,7 +147,9 @@ export const INVENTORY_MENU = {
         ACTIONS.EDIT,
         ACTIONS.DELETE,
         ACTIONS.VIEW,
-        ACTIONS.DUPLICATE
+        ACTIONS.DUPLICATE,
+        ACTIONS.SAVE,
+        ACTIONS.DISCARD,
       ],
     
       fields: [
@@ -168,7 +170,47 @@ export const INVENTORY_MENU = {
         col("category"),
         col("price"),
         col("qty_available")
-      ]
+      ],  
+
+      form: {
+        headerFields: [
+          {
+            key: "canSell",
+            label: "Can be Sold",
+            type: "boolean",
+            default: false
+          },
+          {
+            key: "canPurchase",
+            label: "Can be Purchased",
+            type: "boolean",
+            default: false
+          }
+        ],
+      
+        sections: [
+          {
+            key: "general",
+            label: "General Information",
+            fields: ["name", "reference", "type", "category", "uom"]
+          },
+          {
+            key: "sales",
+            label: "Sales",
+            fields: ["price"]
+          },
+          {
+            key: "purchase",
+            label: "Purchase",
+            fields: ["cost"]
+          },
+          {
+            key: "inventory",
+            label: "Inventory",
+            fields: ["qty_available"]
+          }
+        ]
+      }
     },
 
     {

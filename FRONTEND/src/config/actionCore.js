@@ -9,5 +9,6 @@ export const ACTION_SCOPE = {
     LIST: "listActions",
     SELECTION: "selectionActions",
     BULK: "bulkActions",
-    SYSTEM: "systemActions"
+    SYSTEM: "systemActions",
+    FORM: "formActions"
   }

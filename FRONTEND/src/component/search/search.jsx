@@ -27,13 +27,9 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
     for (let [paramKey, paramValue] of searchParams.entries()) {
       if (paramKey.startsWith("filter_")) {
         const key = paramKey.replace("filter_", "")
-  
-        // cari config filter
         const config = SEARCH_CONFIG.filter.find(f => f.key === key)
   
         if (!config) continue
-  
-        // cari label dari options
         const option = config.options.find(opt => opt.value === paramValue)
   
         filters.push({

@@ -1,15 +1,14 @@
-import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ICONS } from "../../config/iconConfig"
-import { MENU_LIST } from "../../config/menuConfig"
-import { useState, useRef, useEffect } from "react"
+import { MENU_LIST } from "../../config/MENU_LIST"
+import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
 
-import { toView, toModule } from "../../core/router/routerSercive"
+import { useState, useRef, useEffect } from "react"
 import { useAppNavigate } from "../../core/router/useAppNavigate"
 
 import "./header.css"
 
-function Header () {
-
+function Header() {
   const { go } = useAppNavigate()
   const location = useLocation()
 
@@ -19,46 +18,56 @@ function Header () {
   const segments = location.pathname.split("/").filter(Boolean)
   const [modulePath, viewPath] = segments
 
-  const currentMenu = MENU_LIST.find(item =>
-    item.module?.path === modulePath
+  // =========================
+  // 🔹 UI MENU (ONLY UI)
+  // =========================
+  const currentMenu = MENU_LIST.find(
+    item => item.path === modulePath
   )
 
-  const views = currentMenu?.module?.views || []
+  // =========================
+  // 🔹 DOMAIN MODULE
+  // =========================
+  const currentModule = MODULE_REGISTRY[modulePath]
+  const views = currentModule?.views || []
 
+  // =========================
+  // 🔹 GROUPING VIEWS
+  // =========================
   const groupedViews = views.reduce((acc, view) => {
-    if (!acc[view.group]) acc[view.group] = []
-    acc[view.group].push(view)
+    const group = view.group || "Other"
+
+    if (!acc[group]) acc[group] = []
+    acc[group].push(view)
+
     return acc
   }, {})
 
+  // =========================
+  // 🔹 HANDLERS
+  // =========================
   const toggleDropdown = (group) => {
     setActiveGroup(prev => (prev === group ? null : group))
   }
 
-  const handleGoView = (viewKey, queryGroup, queryView) => {
-    if (!currentMenu) return
-  
+  const handleGoView = (view) => {
     const query = {}
-  
-    if (queryGroup) query.group_by = queryGroup
-    if (queryView) query.view_type = queryView
-  
-    go(toView(currentMenu.key, viewKey, query))
-  
+
+    if (view.defaultGroup) query.group_by = view.defaultGroup
+    if (view.defaultView) query.view_type = view.defaultView
+
+    go({
+      module: modulePath,
+      view: view.path,
+      query
+    })
+
     setActiveGroup(null)
   }
 
-  useEffect(() => {
-    if (!views.length) return
-    if(activeGroup === null) return
-
-    const activeView = views.find(v => v.path === viewPath)
-    if (activeView) {
-      setActiveGroup(activeView.group)
-    }
-  }, [location.pathname])
-
-  // 🔥 klik luar close
+  // =========================
+  // 🔹 CLICK OUTSIDE
+  // =========================
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -73,6 +82,9 @@ function Header () {
     return () => document.removeEventListener("click", handleClickOutside)
   }, [])
 
+  // =========================
+  // 🔹 RENDER
+  // =========================
   return (
     <>
       {/* MENU BUTTON */}
@@ -85,13 +97,12 @@ function Header () {
       {/* MODULE HEADER */}
       {currentMenu && (
         <>
-          {/* 🔥 pakai toModule */}
-          <h3
-            onClick={() => go(toModule(currentMenu.key))}
-          >
+          {/* MODULE TITLE */}
+          <h3 onClick={() => go({ module: modulePath })}>
             {currentMenu.name}
           </h3>
 
+          {/* SUB NAV */}
           <div className="sub-nav" ref={dropdownRef}>
             {Object.entries(groupedViews).map(([groupName, groupViews]) => {
               const isOpen = activeGroup === groupName
@@ -124,7 +135,7 @@ function Header () {
                           <div
                             key={view.key}
                             className={`dropdown-item ${isActiveView ? "active" : ""}`}
-                            onClick={() => handleGoView(view.key, view.defaultGroup, view.defaultView)}
+                            onClick={() => handleGoView(view)}
                           >
                             <a>{view.name}</a>
                           </div>

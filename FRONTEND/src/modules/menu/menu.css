@@ -14,20 +14,22 @@
   }
   
   /* CARD */
-  .menu-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  
-    padding: 20px 10px;
-    cursor: pointer;
-  
-    transition: all 0.2s ease;
-    cursor: pointer;
-    box-shadow: 0 1px 3px var(--color-border);
-    transition: 0.2s;
-  }
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px 10px;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px var(--color-border);
+  transition: 0.2s;
+
+  border-radius: 7px;
+}
 
 /* ICON */
 .menu-card img {
@@ -39,7 +41,6 @@
 /* TEXT */
 .menu-card h1 {
     font-size: 14px;
-    font-weight: 500;
 }
 
 /* HOVER EFFECT */

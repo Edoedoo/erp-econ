@@ -1,0 +1,59 @@
+.wira-wrapper {
+    position: relative;
+    width: fit-content;
+  
+    --wira-accent: #1472c5;
+    --wira-primary: black;
+  }
+  
+  .wira-robot {
+    animation: float 3s ease-in-out infinite, robeWave 6s ease-in-out infinite;
+  }
+  
+  .wira-bubble {
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    background: var(--color-bg-card);
+    color: var(--color-text-main);
+  
+    padding: 5px 7px;
+    border-radius: 14px;
+  
+    border: 1px solid var(--color-border);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  
+    max-width: 220px;
+    font-size: 12px;
+  
+    margin-bottom: 10px;
+    width: max-content;
+  }
+  
+  .wira-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--color-bg-card) transparent transparent transparent;
+  }
+  
+  .wira-cursor {
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes wira-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }

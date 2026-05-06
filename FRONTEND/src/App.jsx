@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { MENU_LIST } from "./config/menuConfig"
+import { MENU_LIST } from "./config/MENU_LIST"
+import { MODULE_REGISTRY } from "./config/MODULE_REGISTRY"
 
 import AppLayout from "./core/layout/AppLayout"
 import BodyLayout from "./core/layout/BodyLayout"
@@ -19,11 +20,13 @@ function App() {
 
           {/* MODULE LOOP */}
           {MENU_LIST.map(item => {
-            const modulePath = item.module?.path
-            const ModulePage = item.module?.element
-            const views = item.module?.views || []
+            const modulePath = item.path
+            const moduleConfig = MODULE_REGISTRY[modulePath]
 
-            if (!modulePath) return null
+            if (!modulePath || !moduleConfig) return null
+
+            const ModulePage = moduleConfig.element
+            const views = moduleConfig.views || []
 
             return (
               <Route
@@ -42,8 +45,8 @@ function App() {
                   if (!view) return null
 
                   const ViewPage =
-                    view.element || (() => <div><NotFound /></div>)
-
+                    view.element || (() => <NotFound page={`halaman ${view.name} sedang diperbaiki`}/>)
+                   
                   const actions = (view.actions || []).filter(
                     action => action && action.path
                   )
@@ -57,11 +60,9 @@ function App() {
 
                       {/* ACTION LOOP */}
                       {actions.map(action => {
-                        if (!action) return null
-
                         const ActionPage =
-                          action.element || (() => <div><NotFound /></div>)
-
+                          action.element || (() => <NotFound page={`halaman ${actions.name} sedang diperbaiki`}/>)
+                          
                         return (
                           <Route
                             key={action.key || action.path}
@@ -76,7 +77,7 @@ function App() {
                 })}
 
                 {/* MODULE NOT FOUND */}
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<NotFound page="kalian nyasar gatau kemana..."/>} />
 
               </Route>
             )

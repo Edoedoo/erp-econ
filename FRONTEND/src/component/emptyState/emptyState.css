@@ -1,6 +1,7 @@
 .es-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    gap: 10px;
     align-items: center;
     justify-content: center;
     height: 100%;
@@ -20,28 +21,6 @@
     font-weight: 600;
     color: var(--color-text-main);
     margin-bottom: 6px;
-  }
-  
-  .es-desc {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    max-width: 320px;
-    margin-bottom: 16px;
-  }
-  
-  /* BUTTON */
-  .es-btn {
-    background: var(--color-accent);
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-  }
-  
-  .es-btn:hover {
-    background: var(--color-accent-hover);
   }
   
   /* ANIMATION */

@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 100%;
     font-size: 13px;
+    height: 100%;
   }
   
   .table-row {
@@ -11,6 +12,7 @@
     padding: 2px 20px;
     cursor: pointer;
     background: var(--color-bg-card);
+    height: 100%;
   }
 
   .table-row:hover {
@@ -21,6 +23,7 @@
     font-weight: bold;
     background: var(--color-border);
     padding: 2px 20px;
+    height: auto;
   }
   .table-header:hover {
     background: var(--color-border);

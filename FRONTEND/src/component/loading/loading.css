@@ -1,0 +1,98 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--color-bg-main);
+    text-align: center;
+  }
+  
+  
+  /* TEXT */
+  .loading-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+  }
+  
+  .loading-sub {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-top: 6px;
+  }
+  
+  /* DOTS */
+
+  .loading-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+  }
+  
+  .loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  /* ANIMATIONS */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  
+  @keyframes blink {
+    0%, 94%, 100% { transform: scaleY(1); }
+    96% { transform: scaleY(0.1); }
+  }
+  
+  @keyframes mouthMove {
+    0%, 100% { d: path("M75 105 Q100 125 125 105"); }
+    50% { d: path("M75 110 Q100 120 125 110"); }
+  }
+  
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-5px); opacity: 1; }
+  }
+
+  .eye {
+    animation: blink 4s infinite, eyeMove 6s infinite;
+    transform-origin: center;
+  }
+  
+  @keyframes eyeMove {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(1px); }
+  }
+  
+  .mouth {
+    animation: smile 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes smile {
+    0%, 100% { d: path("M88 105 Q100 115 112 105"); }
+    50% { d: path("M88 103 Q100 118 112 103"); }
+  }
+
+  .dots::after {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    text-align: left;
+    animation: dots 1.2s steps(4, end) infinite;
+  }
+  
+  @keyframes dots {
+    0%   { content: ""; }
+    25%  { content: "."; }
+    50%  { content: ".."; }
+    75%  { content: "..."; }
+    100% { content: ""; }
+  }

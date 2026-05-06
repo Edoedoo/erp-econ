@@ -1,5 +1,5 @@
-import { MENU_LIST } from "../../config/menuConfig"
-import { ACTIONS } from "../../config/actions"
+import { MENU_LIST } from "../../config/MENU_LIST"
+import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
 
 export const resolvePath = (pathname) => {
   const segments = pathname.split("/").filter(Boolean)
@@ -7,25 +7,32 @@ export const resolvePath = (pathname) => {
   const [modulePath, viewPath, action, id] = segments
 
   // ===============================
-  // 🔹 1. VALIDATE MODULE
+  // 🔹 1. VALIDATE MODULE (UI)
   // ===============================
   const currentMenu = MENU_LIST.find(
-    item => item.module?.path === modulePath
+    item => item.path === modulePath
   )
 
   if (!currentMenu) {
     return { status: "not_found" }
   }
 
-  const module = currentMenu.module
+  // ===============================
+  // 🔹 2. GET MODULE CONFIG (DOMAIN)
+  // ===============================
+  const currentModule = MODULE_REGISTRY[modulePath]
+
+  if (!currentModule) {
+    return { status: "not_found" }
+  }
 
   // ===============================
-  // 🔹 2. HANDLE ROOT MODULE
+  // 🔹 3. HANDLE ROOT MODULE
   // ===============================
   if (!viewPath) {
     return {
       status: "ok",
-      module: module.path,
+      module: modulePath,
       view: null,
       action: null,
       id: null,
@@ -35,9 +42,9 @@ export const resolvePath = (pathname) => {
   }
 
   // ===============================
-  // 🔹 3. VALIDATE VIEW
+  // 🔹 4. VALIDATE VIEW (from module, NOT menu)
   // ===============================
-  const currentView = module.views?.find(
+  const currentView = currentModule.views?.find(
     v => v.path === viewPath
   )
 
@@ -46,12 +53,12 @@ export const resolvePath = (pathname) => {
   }
 
   // ===============================
-  // 🔹 4. HANDLE VIEW ONLY
+  // 🔹 5. HANDLE VIEW ONLY
   // ===============================
   if (!action) {
     return {
       status: "ok",
-      module: module.path,
+      module: modulePath,
       view: currentView.path,
       action: null,
       id: null,
@@ -61,7 +68,7 @@ export const resolvePath = (pathname) => {
   }
 
   // ===============================
-  // 🔹 5. VALIDATE ACTION
+  // 🔹 6. VALIDATE ACTION
   // ===============================
   const allowedActions = currentView.actions || []
 
@@ -74,20 +81,18 @@ export const resolvePath = (pathname) => {
   }
 
   // ===============================
-  // 🔹 6. VALIDATE ID (optional rule)
+  // 🔹 7. VALIDATE ID
   // ===============================
-  // rule sederhana:
-  // - action selain "create" butuh id
   if (action !== "create" && !id) {
     return { status: "not_found" }
   }
 
   // ===============================
-  // 🔹 7. SUCCESS
+  // 🔹 8. SUCCESS
   // ===============================
   return {
     status: "ok",
-    module: module.path,
+    module: modulePath,
     view: currentView.path,
     action,
     id: id || null,

@@ -4,27 +4,22 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    background: var(--color-bg-main);
+    background: var(--color-text-secondary);
     text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
   }
   
-  /* ROBOT */
   .nf-robot {
-    margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite;
+    display: flex;
+    flex-wrap: wrap;
   }
-  
-  /* EYES BLINK */
-  .eye {
-    animation: blink 4s infinite;
-    transform-origin: center;
-  }
-  
   /* TEXT */
   .nf-title {
     font-size: 64px;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-text-main);
     margin: 0;
   }
   
@@ -34,48 +29,10 @@
     margin: 8px 0;
   }
   
-  .nf-desc {
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    margin-bottom: 20px;
-  }
-  
   /* BUTTON */
   .nf-actions {
     display: flex;
     gap: 10px;
   }
   
-  /* .btn-primary {
-    background: var(--color-accent);
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-  } */
   
-  /* .btn-primary:hover {
-    background: var(--color-accent-hover);
-  } */
-  
-  /* .btn-secondary {
-    background: transparent;
-    border: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-  } */
-  
-  /* ANIMATIONS */
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  
-  @keyframes blink {
-    0%, 95%, 100% { transform: scaleY(1); }
-    97% { transform: scaleY(0.1); }
-  }

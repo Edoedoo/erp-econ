@@ -2,8 +2,18 @@ import "./notfound.css";
 import { toView, toModule } from "../../core/router/routerSercive";
 import { useAppNavigate } from "../../core/router/useAppNavigate";
 import { useLocation } from "react-router-dom";
+import Rudra from "../../Assets/SVG_MEMBERS/Rudra/Rudra";
+import Nara from "../../Assets/SVG_MEMBERS/Nara/Nara";
+import Akasa from "../../Assets/SVG_MEMBERS/Akasa/Akasa";
+import Bayu from "../../Assets/SVG_MEMBERS/Bayu/Bayu";
+import Samya from "../../Assets/SVG_MEMBERS/Samya/Samya";
+import Laras from "../../Assets/SVG_MEMBERS/Laras/Laras";
+import Citra from "../../Assets/SVG_MEMBERS/Citra/Citra";
+import Agni from "../../Assets/SVG_MEMBERS/Agni/Agni";
+import Wira from "../../Assets/SVG_MEMBERS/Wira/Wira";
+import Sandi from "../../Assets/SVG_MEMBERS/Sandi/Sandi";
 
-export default function NotFound() {
+export default function NotFound({message= "yu balik dulu ke dashboard, biar aku tegur yang kasih link...!", page =""}) {
     
     const { go } = useAppNavigate()
     const location = useLocation()
@@ -15,38 +25,26 @@ export default function NotFound() {
   return (
     <div className="nf-container">
       
-      {/* ROBOT SVG */}
       <div className="nf-robot">
-        <svg width="140" height="140" viewBox="0 0 200 200">
-          {/* head */}
-          <rect x="40" y="30" rx="20" ry="20" width="120" height="90" fill="var(--color-bg-card)" stroke="var(--color-border)" />
-
-          {/* eyes */}
-          <circle className="eye" cx="85" cy="75" r="8" fill="var(--color-primary)" />
-          <circle className="eye" cx="115" cy="75" r="8" fill="var(--color-primary)" />
-
-          {/* mouth (sad) */}
-          <path d="M80 100 Q100 85 120 100" stroke="var(--color-primary)" strokeWidth="3" fill="none"/>
-
-          {/* antenna */}
-          <line x1="100" y1="30" x2="100" y2="10" stroke="var(--color-border)" />
-          <circle cx="100" cy="8" r="4" fill="var(--color-accent)" />
-        </svg>
+        <Nara   />
+        {/* // <Akasa   />
+        // <Rudra   />
+        // <Bayu   />
+        // <Samya   />
+        // <Laras   />
+        // <Citra   />
+        // <Agni   />
+        // <Wira   />
+        // <Sandi   /> */}
       </div>
 
-      {/* TEXT */}
       <h1 className="nf-title">404</h1>
       <p className="nf-sub">
-        Oops... halaman tidak ditemukan
+        {page}
       </p>
 
-      <p className="nf-desc">
-        Sepertinya kamu tersesat di sistem Econix.
-      </p>
-
-      {/* ACTION */}
       <div className="nf-actions">
-        <button className="btn-primary" onClick={() => go(toModule(modulePath))}>Ke Dashboard</button>
+        <button className="btn-primary" onClick={() => go(toModule(modulePath))}>kembali</button>
       </div>
 
     </div>

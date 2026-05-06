@@ -1,34 +1,37 @@
-import { useLocation, useSearchParams, Outlet } from "react-router-dom"
-import { resolvePath } from "../../../core/router/routerResolver"
-import { VIEW_TYPE } from "../../../component/viewType/viewType"
+import { useSearchParams, Outlet, useOutletContext } from "react-router-dom";
+import { VIEW_TYPE } from "../../../component/viewType/viewType";
 
-function ProductsPage () {
+function ProductsPage() {
 
-  const location = useLocation()
-  const [params] = useSearchParams()
+  const [params] = useSearchParams();
 
-  const segments = location.pathname.split("/").filter(Boolean)
-  const [modulePath, viewPath, action] = segments
-
-  const { currentView } = resolvePath(location.pathname)
+  const layoutContext = useOutletContext();
+  const route = layoutContext?.route || {};
+  const { currentView } = route;
 
   const viewType =
-    params.get("view_type") || currentView?.defaultView || "list"
+    params.get("view_type") ||
+    currentView?.defaultView ||
+    "list";
 
-  const ViewComponent = VIEW_TYPE[viewType]
+  const ViewComponent = VIEW_TYPE[viewType];
 
-  const data = []
+  const data = [];
 
-  if (action) {
-    return <Outlet />
+  if (route.action) {
+    return (
+      <Outlet context={layoutContext} />
+    );
   }
 
   return (
-    <ViewComponent
-      data={data}
-      columns={currentView?.columns}
-    />
-  )
+    <>
+      <ViewComponent
+        data={data}
+        columns={currentView?.columns}
+      />
+    </>
+  );
 }
 
-export default ProductsPage
+export default ProductsPage;

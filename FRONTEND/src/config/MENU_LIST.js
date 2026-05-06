@@ -1,104 +1,76 @@
 import { ICONS } from "./iconConfig"
-import { ACCOUNTING_MENU } from "../modules/accounting/config/accountingConfig"
-import { INVENTORY_MENU } from "../modules/inventory/config/inventoryConfig"
-import { PURCHASE_MENU } from "../modules/purchase/config/purchaseConfig"
-
 export const MENU_LIST = [
   {
     key: "accounting",
     name: "Accounting",
+    path: "accounting",
     icon: ICONS.accounting,
-    module: ACCOUNTING_MENU
   },
   {
     key: "expenses",
     name: "Expenses",
+    path: "accounting",
     icon: ICONS.expenses,
-    module: ACCOUNTING_MENU 
   },
   {
     key: "inventory",
     name: "Inventory",
+    path: "inventory",
     icon: ICONS.inventory,
-    module: INVENTORY_MENU
   },
 
   {
     key: "configuration",
     name: "Configuration",
+    path: "configuration",
     icon: ICONS.configuration,
-    module: {
-      path: "configuration",
-      views: []
-    }
   },
   {
     key: "setting",
     name: "Setting",
+    path: "setting",
     icon: ICONS.setting,
-    module: {
-      path: "setting",
-      views: []
-    }
   },
   {
     key: "crm",
     name: "CRM",
+    path: "crm",
     icon: ICONS.crm,
-    module: {
-      path: "crm",
-      views: []
-    }
   },
   {
     key: "pos",
     name: "Point Of Sale",
+    path: "pos",
     icon: ICONS.pos,
-    module: {
-      path: "pos",
-      views: []
-    }
   },
   {
     key: "purchase",
     name: "Purchase",
+    path: "purchase",
     icon: ICONS.purchase,
-    module: PURCHASE_MENU
   },
   {
     key: "sales",
     name: "Sales",
+    path: "sales",
     icon: ICONS.sales,
-    module: {
-      path: "sales",
-      views: []
-    }
   },
   {
     key: "employees",
     name: "Employees",
+    path: "employees",
     icon: ICONS.employees,
-    module: {
-      path: "employees",
-      views: []
-    }
   },
   {
     key: "dashboard",
     name: "Dashboard",
+    path: "dashboard",
     icon: ICONS.dashboard,
-    module: {
-      path: "dashboard",
-      views: []
-    }
   },
   {
     key: "members",
     name: "Members",
+    path: "members",
     icon: ICONS.members,
-    module: {
-      path: "members",
-      views: []
-    }
   }
 ]

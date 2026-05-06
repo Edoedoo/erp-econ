@@ -1,0 +1,64 @@
+.bayu-wrapper {
+    position: relative;
+    width: fit-content;
+  
+    --bayu-accent: #02c5d7; /* cyan data */
+    --bayu-primary: black;
+  }
+  
+  .bayu-robot {
+    animation: bayu-float 3.5s ease-in-out infinite;
+  }
+  
+  .bayu-bubble {
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    background: var(--color-bg-card);
+    color: var(--color-text-main);
+  
+    padding: 5px 7px;
+    border-radius: 14px;
+  
+    border: 1px solid var(--color-border);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  
+    max-width: 220px;
+    font-size: 12px;
+  
+    margin-bottom: 10px;
+    width: max-content;
+  }
+  
+  .bayu-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--color-bg-card) transparent transparent transparent;
+  }
+  
+  .bayu-cursor {
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes bayu-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+
+  @keyframes scanPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }

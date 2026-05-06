@@ -1,31 +1,37 @@
-import { MENU_LIST } from "../../config/menuConfig"
+import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
 
-const findMenu = (key) =>
-  MENU_LIST.find(item => item.key === key)
+const findModule = (key) => {
+  const module = MODULE_REGISTRY[key]
 
-const findView = (menu, viewKey) =>
-  menu?.module?.views?.find(v => v.key === viewKey)
+  if (!module) {
+    throw new Error(`Module not found: ${key}`)
+  }
+
+  return module
+}
+
+const findView = (module, viewKey) => {
+  const view = module?.views?.find(v => v.key === viewKey)
+
+  if (!view) {
+    throw new Error(`View not found: ${viewKey}`)
+  }
+
+  return view
+}
 
 export const toModule = (key) => {
-    const menu = findMenu(key)
+  const module = findModule(key)
 
-    if (!menu?.module?.path) {
-        throw new Error(`Module path not found for key: ${key}`)
-    }
-
-    return {
-        module: menu.module.path
-    }
+  return {
+    module: module.path
+  }
 }
 
 
 export const toView = (key, viewKey, query = {}) => {
-  const menu = findMenu(key)
-  const view = findView(menu, viewKey)
-
-  if (!menu || !view) {
-    throw new Error(`View not found: ${key} / ${viewKey}`)
-  }
+  const module = findModule(key)
+  const view = findView(module, viewKey)
 
   const finalQuery = { ...query }
 
@@ -42,19 +48,19 @@ export const toView = (key, viewKey, query = {}) => {
   })
 
   return {
-    module: menu.module.path,
+    module: module.path,
     view: view.path,
     query: finalQuery
   }
 }
 
 export const toAction = (key, viewKey, action, id, query) => {
-  const menu = findMenu(key)
-  const view = findView(menu, viewKey)
+  const module = findModule(key)
+  const view = findView(module, viewKey)
 
   return {
-    module: menu?.module?.path,
-    view: view?.path,
+    module: module.path,
+    view: view.path,
     action,
     id,
     query

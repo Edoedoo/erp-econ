@@ -1,6 +1,6 @@
 import { ACTION_SCOPE, ACTION_GROUP } from "./actionCore"
 import { toAction, toView } from "../core/router/routerSercive"
-import CreatePage from "../core/layout/createPage"
+import FormPage from "../component/formPage/formPage"
 
 export const GLOBAL_ACTIONS = {
 
@@ -11,7 +11,7 @@ export const GLOBAL_ACTIONS = {
     icon: "plus",
     group: ACTION_GROUP.MAIN,
     scope: ACTION_SCOPE.SINGLE,
-    element: CreatePage,
+    element: FormPage,
 
     handler: ({ go, module, view }) => {
       go(toAction(module, view, "create"))
@@ -26,6 +26,7 @@ export const GLOBAL_ACTIONS = {
     group: ACTION_GROUP.SELECTION,
     scope: ACTION_SCOPE.SINGLE,
     requires: { selection: true, min: 1, max: 1 },
+    element: FormPage,
 
     handler: ({ go, module, view, selectedIds }) => {
       go(toAction(module, view, "edit", selectedIds[0]))
@@ -99,6 +100,37 @@ export const GLOBAL_ACTIONS = {
 
     handler: ({ navigate }) => {
       navigate(-1) 
+    }
+  },
+
+  SAVE: {
+    key: "save",
+    label: "Save",
+    icon: "save",
+    group: ACTION_GROUP.FORM,
+    scope: ACTION_SCOPE.SINGLE,
+  
+    handler: ({ formData, go, module, view, id }) => {
+      console.log("SAVE", {
+        module, 
+        view,
+        id,
+        formData
+      })
+  
+      go(toView(module, view))
+    }
+  },
+
+  DISCARD: {
+    key: "discard",
+    label: "Discard",
+    icon: "x",
+    group: ACTION_GROUP.FORM,
+    scope: ACTION_SCOPE.SINGLE,
+  
+    handler: ({ go, module, view }) => {
+      go(toView(module, view))
     }
   },
 

@@ -1,5 +1,5 @@
 import './menu.css';
-import { MENU_LIST } from "../../config/menuConfig";
+import { MENU_LIST } from "../../config/MENU_LIST";
 import { useAppNavigate } from '../../core/router/useAppNavigate';
 import { toModule } from '../../core/router/routerSercive';
 
@@ -27,7 +27,7 @@ function Menu() {
   const filteredMenu = MENU_LIST
     .filter(item =>
       user.permissions.includes(item.key) &&
-      item.module?.path
+      item.path
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 
