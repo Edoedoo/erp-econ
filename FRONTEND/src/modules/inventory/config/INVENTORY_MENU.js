@@ -1,8 +1,9 @@
 import InventoryPage from "../pages/InventoryPage"
-import ProductsPage from "../pages/ProductsPage"
+import ProductsPage from "../pages/views/ProductsPage"
+import UnitOfMeasure from "../pages/views/UnitOfMeasurePage"
 import { ACTIONS } from "../../../config/actions"
 import { col } from "../../../config/columnHelper"
-import { field } from "./fieldHelper"
+import { field } from "../../../config/fieldsHelper"
 
 export const INVENTORY_MENU = {
   path: "inventory",
@@ -10,19 +11,16 @@ export const INVENTORY_MENU = {
 
   views: [
 
-    // =====================================================
-    // 🔹 OPERATIONS
-    // =====================================================
 
     {
       key: "transfers",
       name: "Transfers",
       path: "transfers",
-      defaultGroup: "",
+      defaultGroup: "operation",
       defaultView: "list",
       element: null,
       group: "Operations",
-
+    
       actions: [
         ACTIONS.CREATE,
         ACTIONS.IMPORT,
@@ -37,7 +35,7 @@ export const INVENTORY_MENU = {
         ACTIONS.DUPLICATE,
         ACTIONS.ARCHIVE
       ],
-
+    
       columns: [
         col("reference"),
         col("origin"),
@@ -45,18 +43,39 @@ export const INVENTORY_MENU = {
         col("state"),
         col("scheduled_date", { label: "Scheduled Date" }),
         col("create_date")
-      ]
+      ],
+    
+      form: {
+        sections: [
+          {
+            key: "general",
+            label: "General Information",
+            fields: [
+              field("reference"),
+              field("origin"), 
+              field("partner")
+            ]
+          },
+          {
+            key: "status",
+            label: "Status",
+            fields: [
+            field("state"), 
+            field("scheduled_date")
+          ]
+          }
+        ]
+      }
     },
-
     {
       key: "receipts",
       name: "Receipts",
       path: "receipts",
-      defaultGroup: "",
+      defaultGroup: "operation",
       defaultView: "list",
       element: null,
       group: "Operations",
-
+    
       actions: [
         ACTIONS.CREATE,
         ACTIONS.IMPORT,
@@ -66,41 +85,29 @@ export const INVENTORY_MENU = {
         ACTIONS.SET_QUANTITIES,
         ACTIONS.VIEW
       ],
-
+    
       columns: [
         col("reference"),
         col("vendor"),
         col("state"),
         col("scheduled_date"),
         col("create_date")
-      ]
-    },
-
-    {
-      key: "delivery_order",
-      name: "Delivery Orders",
-      path: "delivery_order",
-      defaultGroup: "",
-      defaultView: "list",
-      element: null,
-      group: "Operations",
-
-      actions: [
-        ACTIONS.CREATE,
-        ACTIONS.EXPORT,
-        ACTIONS.VALIDATE,
-        ACTIONS.DELETE,
-        ACTIONS.PRINT_LABELS,
-        ACTIONS.VIEW
       ],
-
-      columns: [
-        col("reference"),
-        col("customer"),
-        col("state"),
-        col("scheduled_date"),
-        col("origin")
-      ]
+    
+      form: {
+        sections: [
+          {
+            key: "general",
+            label: "General",
+            fields: ["reference", "vendor"]
+          },
+          {
+            key: "schedule",
+            label: "Schedule",
+            fields: ["scheduled_date", "state"]
+          }
+        ]
+      }
     },
 
     {
@@ -128,12 +135,9 @@ export const INVENTORY_MENU = {
       ]
     },
 
-    // =====================================================
-    // 🔹 PRODUCTS
-    // =====================================================
     {
       key: "products",
-      name: "Products",
+      name: "Product",
       path: "products",
       defaultGroup: "product",
       defaultView: "kanban",
@@ -150,18 +154,7 @@ export const INVENTORY_MENU = {
         ACTIONS.DUPLICATE,
         ACTIONS.SAVE,
         ACTIONS.DISCARD,
-      ],
-    
-      fields: [
-        field("name"),
-        field("reference"),
-        field("type"),
-        field("role"),
-        field("category"),
-        field("uom"),
-        field("price"),
-        field("cost"),
-        field("qty_available")
+        ACTIONS.PRINT_LABELS,
       ],
     
       columns: [
@@ -173,69 +166,125 @@ export const INVENTORY_MENU = {
       ],  
 
       form: {
-        headerFields: [
-          {
-            key: "canSell",
-            label: "Can be Sold",
-            type: "boolean",
-            default: false
-          },
-          {
-            key: "canPurchase",
-            label: "Can be Purchased",
-            type: "boolean",
-            default: false
-          }
-        ],
+        header: {
+          media: [
+            field("image")
+          ],
+      
+          name: [
+            field("favorite"),
+            field("name")
+          ],
+      
+          checkbox: [
+            field("canSell"),
+            field("canPurchase"),
+            field("rental"),
+            field("expense"),
+          ]
+        },
       
         sections: [
           {
             key: "general",
             label: "General Information",
-            fields: ["name", "reference", "type", "category", "uom"]
+      
+            columns: [
+              [
+                field("type"),
+                field("category"),
+                field("tracking"),
+                field("uom"),
+              ],
+      
+              [
+                field("price"),
+                field("cost"),
+                field("reference"),
+                field("barcode"),
+              ]
+            ]
           },
+      
           {
             key: "sales",
             label: "Sales",
-            fields: ["price"]
+      
+            columns: [
+              [
+                field("price")
+              ]
+            ]
           },
+      
           {
             key: "purchase",
             label: "Purchase",
-            fields: ["cost"]
+      
+            columns: [
+              [
+                field("cost")
+              ]
+            ]
           },
+      
           {
             key: "inventory",
             label: "Inventory",
-            fields: ["qty_available"]
+      
+            columns: [
+              [
+                field("qty_available")
+              ]
+            ]
           }
         ]
       }
     },
-
     {
       key: "product_variants",
       name: "Product Variants",
       path: "product_variants",
-      defaultGroup: "",
-      defaultView: "",
+      defaultGroup: "product",
+      defaultView: "list",
       element: null,
       group: "Products",
-
+    
       actions: [
         ACTIONS.CREATE,
         ACTIONS.EXPORT,
         ACTIONS.EDIT,
         ACTIONS.DELETE,
-        ACTIONS.VIEW
+        ACTIONS.VIEW,
       ],
-
+  
       columns: [
         col("product"),
         col("product_variant"),
         col("category"),
         col("qty_available")
-      ]
+      ],
+    
+      form: {
+        sections: [
+          {
+            key: "general",
+            label: "General",
+            fields: [
+              field("product"), 
+              field("product_variant"), 
+              field("category")
+            ]
+          },
+          {
+            key: "inventory",
+            label: "Inventory",
+            fields: [
+              field("qty_available")
+            ]
+          }
+        ]
+      }
     },
 
     {
@@ -265,24 +314,56 @@ export const INVENTORY_MENU = {
       name: "Units of Measure",
       path: "units_of_measure",
       defaultGroup: "",
-      defaultView: "",
-      element: null,
+      defaultView: "list",
+      element: UnitOfMeasure,
       group: "Products",
 
       actions: [
-        ACTIONS.CREATE
+        ACTIONS.CREATE,
+        ACTIONS.IMPORT,
+        ACTIONS.EXPORT,
+        ACTIONS.SAVE,
+        ACTIONS.DISCARD,
+        ACTIONS.VIEW,
+        ACTIONS.EDIT,
+
       ],
 
       columns: [
-        col("name"),
-        col("category"),
-        col("uom_type", { label: "Type" })
-      ]
-    },
+        col("name", { label: "Units of Measure"}),
+        col("uom_category"),
+        col("type", { label: "Type" })
+      ],
 
-    // =====================================================
-    // 🔹 REPORTING
-    // =====================================================
+      form: {
+        header: {
+          media: [],
+          name: [],
+          checkbox: []
+        },
+      
+        sections: [
+          {
+            key: "general",
+            label: "General Information",
+      
+            columns: [
+              [
+                field("uom_name"),
+                field("uom_category"),
+                field("uom_type")
+              ],
+      
+              [
+                field("uom_factor"),
+                field("uom_rounding"),
+                field("active")
+              ]
+            ]
+          }
+        ]
+      }
+    },
 
     {
       key: "stock",
@@ -326,10 +407,6 @@ export const INVENTORY_MENU = {
         col("total")
       ]
     },
-
-    // =====================================================
-    // 🔹 CONFIGURATION
-    // =====================================================
 
     {
       key: "warehouse",

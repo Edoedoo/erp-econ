@@ -1,12 +1,14 @@
 
-import Dashboard from "../../../component/dashboard/Dashboard"
+import Dashboard from "../../../component/dashboard/Dashboard";
+
 
 function InventoryPage () {
+
   return (
     <>
       <Dashboard />
     </>
-  )
+  );
 }
 
-export default InventoryPage
+export default InventoryPage;

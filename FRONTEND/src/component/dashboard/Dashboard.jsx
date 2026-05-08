@@ -40,7 +40,8 @@ function Dashboard () {
   return (
     <div className="dashboard">
       <div className="dashboard-grid">
-        {currentList.map((card) => (
+        {currentList.map((card) => {
+          return (
           <div key={card.key} className="dashboard-card">
             <h4 className="title-card" onClick={() => handleGoView(card)}>
               {card.name}
@@ -59,7 +60,8 @@ function Dashboard () {
               </div>
             </div>
           </div>
-        ))}
+        )}
+        )}
       </div>
     </div>
   )

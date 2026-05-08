@@ -1,5 +1,5 @@
 import { useSearchParams, Outlet, useOutletContext } from "react-router-dom";
-import { VIEW_TYPE } from "../../../component/viewType/viewType";
+import { VIEW_TYPE } from "../../../../component/viewType/viewType";
 
 function ProductsPage() {
 
@@ -16,7 +16,12 @@ function ProductsPage() {
 
   const ViewComponent = VIEW_TYPE[viewType];
 
-  const data = [];
+  const data = [1,2,3,4,5,6,7];
+
+  const column = data.length > 0
+    ? currentView?.columns
+    : undefined;
+
 
   if (route.action) {
     return (
@@ -25,12 +30,7 @@ function ProductsPage() {
   }
 
   return (
-    <>
-      <ViewComponent
-        data={data}
-        columns={currentView?.columns}
-      />
-    </>
+      <ViewComponent data={data} columns={column} />
   );
 }
 

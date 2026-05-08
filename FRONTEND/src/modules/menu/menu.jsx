@@ -22,7 +22,7 @@ function Menu() {
     ]
   };
 
-  const { go } = useAppNavigate()
+  const { go } = useAppNavigate();
 
   const filteredMenu = MENU_LIST
     .filter(item =>

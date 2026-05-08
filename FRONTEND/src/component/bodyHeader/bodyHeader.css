@@ -1,16 +1,10 @@
 
-/* ======================
-   ROOT
-====================== */
 .body-header {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-/* ======================
-   TOP SECTION (FIXED LAYOUT)
-====================== */
 .body-top {
   display: flex;
   justify-content: space-between;
@@ -20,14 +14,12 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-/* LEFT */
 .body-left {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* RIGHT (LOCKED LIKE ODOO) */
 .body-right {
   flex: 0 0 360px;
   display: flex;
@@ -35,9 +27,6 @@
   gap: 6px;
 }
 
-/* ======================
-   BREADCRUMB
-====================== */
 .module-name {
   display: flex;
   align-items: center;
@@ -47,21 +36,14 @@
 
 .module-name h4 {
   color: var(--color-primary);
+  cursor: pointer;
 }
 
 .module-name span {
   color: var(--color-text-secondary);
-  cursor: pointer;
   font-size: 14px;
 }
-.module-name span:hover {
-  color: var(--color-text-main);
-}
 
-
-/* ======================
-   CENTER ACTIONS
-====================== */
 .body-center {
   display: flex;
   justify-content: space-between;
@@ -74,17 +56,15 @@
   gap: 6px;
 }
 
-/* ======================
-   BUTTONS
-====================== */
 .btn-primary,
 .btn-secondary {
   background: var(--color-accent);
   color: var(--color-text-light);
   border: none;
-  padding: 5px 10px;
+  padding: 4px 10px;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 2px;
+  font-size: 11px;
 }
 
 .btn-primary:hover,
@@ -92,9 +72,6 @@
   background: var(--color-accent-hover);
 }
 
-/* ======================
-   BOTTOM
-====================== */
 .body-bottom {
   display: flex;
   justify-content: space-between;

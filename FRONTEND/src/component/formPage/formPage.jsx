@@ -1,69 +1,24 @@
 import { useOutletContext } from "react-router-dom";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./formPage.css";
-import { INVENTORY_FIELDS } from "../../modules/inventory/config/inventoryFields";
-import imgDefault from "../../Assets/SVG/imgDefault.svg";
 
-const FIELD_RENDERER = {
-  text: (field, value, onChange) => (
-    <input
-      type="text"
-      value={value || ""}
-      onChange={(e) => onChange(field.key, e.target.value)}
-    />
-  ),
-
-  number: (field, value, onChange) => (
-    <input
-      type="number"
-      value={value || 0}
-      onChange={(e) => onChange(field.key, Number(e.target.value))}
-    />
-  ),
-
-  checkbox: (field, value, onChange) => (
-    <input
-      type="checkbox"
-      checked={!!value}
-      onChange={(e) => onChange(field.key, e.target.checked)}
-    />
-  ),
-
-  boolean: (field, value, onChange) => (
-    <input
-      type="checkbox"
-      checked={!!value}
-      onChange={(e) => onChange(field.key, e.target.checked)}
-    />
-  ),
-
-  select: (field, value, onChange) => (
-    <select
-      value={value || ""}
-      onChange={(e) => onChange(field.key, e.target.value)}
-    >
-      <option value="">Select...</option>
-      {field.options?.map((opt) => (
-        <option key={opt.value} value={opt.value}>
-          {opt.label}
-        </option>
-      ))}
-    </select>
-  ),
-};
+import { FIELD_RENDERER } from "../../config/fieldsRenderer";
 
 function FormPage() {
-
   const layoutContext = useOutletContext();
+
 
   const route = layoutContext?.route || {};
   const setFormData = layoutContext?.formStore?.setFormData;
 
-  const { action, currentView } = route;
-
+  const { action, currentView, record } = route;
   const form = currentView?.form || {};
   const sections = form?.sections || [];
-  const headerFields = form?.headerFields || [];
+
+  const header = form?.header || {};
+  const headerMedia = header?.media || [];
+  const headerName = header?.name || [];
+  const headerCheckbox = header?.checkbox || [];
 
   const mode = useMemo(() => {
     if (action === "create") return "create";
@@ -76,23 +31,10 @@ function FormPage() {
     sections[0]?.key || null
   );
 
-  const fileInputRef = useRef(null);
-
-  const [image, setImage] = useState(currentView?.image || "");
-  const [alt] = useState(currentView?.alt || "svg");
-
   const activeSectionData = useMemo(
     () => sections.find((s) => s.key === activeSection),
     [sections, activeSection]
   );
-
-  const handleImageChange = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const url = URL.createObjectURL(file);
-    setImage(url);
-  };
 
   const handleChange = (key, value) => {
     setDataFormSection((prev) => ({
@@ -100,6 +42,50 @@ function FormPage() {
       [key]: value,
     }));
   };
+
+  const resolveFieldDefaultValue = (field) => {
+    if (field.default !== undefined) return field.default;
+    if (field.type === "checkbox") return false;
+    if (field.type === "number") return 0;
+    if (field.type === "relation") return null;
+    return "";
+  };
+
+  const applyDefaultValues = (fields = [], target = {}) => {
+    fields.forEach((field) => {
+      target[field.key] = resolveFieldDefaultValue(field);
+    });
+  };
+
+  const getAllFieldsFromColumns = (columns = []) => {
+    return columns.flat();
+  };
+
+  const buildInitialFormData = () => {
+    const initial = {};
+
+    applyDefaultValues(headerMedia, initial);
+    applyDefaultValues(headerName, initial);
+    applyDefaultValues(headerCheckbox, initial);
+
+    sections.forEach((section) => {
+      const fields = getAllFieldsFromColumns(section.columns);
+      applyDefaultValues(fields, initial);
+    });
+
+    if (record && typeof record === "object") {
+      Object.keys(record).forEach((key) => {
+        initial[key] = record[key];
+      });
+    }
+
+    return initial;
+  };
+
+  useEffect(() => {
+    const initial = buildInitialFormData();
+    setDataFormSection(initial);
+  }, [headerMedia, headerName, headerCheckbox, sections, record]);
 
   const payload = useMemo(() => {
     return {
@@ -109,27 +95,88 @@ function FormPage() {
         name: currentView?.name || null,
       },
 
-      image: {
-        src: image,
-        alt: alt,
+      header: {
+        media: headerMedia.reduce((acc, field) => {
+          acc[field.key] = dataFormSection[field.key];
+          return acc;
+        }, {}),
+
+        name: headerName.reduce((acc, field) => {
+          acc[field.key] = dataFormSection[field.key];
+          return acc;
+        }, {}),
+
+        checkbox: headerCheckbox.reduce((acc, field) => {
+          acc[field.key] = dataFormSection[field.key];
+          return acc;
+        }, {}),
       },
 
       sections: sections.reduce((acc, section) => {
+        const fields = getAllFieldsFromColumns(section.columns);
+
         acc[section.key] = {
           label: section.label,
-          data: section.fields?.reduce((fieldAcc, key) => {
-            fieldAcc[key] = dataFormSection[key];
+          data: fields.reduce((fieldAcc, field) => {
+            fieldAcc[field.key] = dataFormSection[field.key];
             return fieldAcc;
           }, {}),
         };
+
         return acc;
       }, {}),
     };
-  }, [mode, currentView, image, alt, sections, dataFormSection]);
+  }, [
+    mode,
+    currentView,
+    headerMedia,
+    headerName,
+    headerCheckbox,
+    sections,
+    dataFormSection,
+  ]);
 
   useEffect(() => {
     setFormData?.(payload);
   }, [payload, setFormData]);
+
+  const renderFields = (fields = []) => {
+    return fields.map((field) => {
+      if (!field) return null;
+
+      const Renderer = FIELD_RENDERER[field.type];
+
+      if (field.type === "image") {
+        return (
+          <div key={field.key} className="imageRowFull">
+            <Renderer
+              field={field}
+              value={dataFormSection[field.key]}
+              onChange={handleChange}
+              mode={mode}
+            />
+          </div>
+        );
+      }
+
+      return (
+        <div key={field.key} className="fieldRow">
+          <label>{field.label}</label>
+
+          {Renderer ? (
+            <Renderer
+              field={field}
+              value={dataFormSection[field.key]}
+              onChange={handleChange}
+              mode={mode}
+            />
+          ) : (
+            <span>⚠️ No renderer for "{field.type}"</span>
+          )}
+        </div>
+      );
+    });
+  };
 
   return (
     <div className="formPage">
@@ -141,47 +188,73 @@ function FormPage() {
       <div className="headerForm">
 
         <div className="headerFormLeft">
-          <h2>{currentView?.name || "-"}</h2>
+
+          <h5>{currentView?.name || "-"}</h5>
+
+          <div className="nameGroup">
+
+            {headerName.map((field) => {
+              const Renderer = FIELD_RENDERER[field.type];
+              if (!Renderer) return null;
+
+              if (field.type === "favorite") {
+                return (
+                  <div key={field.key} className="favoriteWrapper">
+                    <Renderer
+                      field={field}
+                      value={dataFormSection[field.key]}
+                      onChange={handleChange}
+                      mode={mode}
+                    />
+                  </div>
+                );
+              }
+
+              return (
+                <Renderer
+                  key={field.key}
+                  field={field}
+                  value={dataFormSection[field.key]}
+                  onChange={handleChange}
+                  mode={mode}
+                  placeholder={`${field.label}...`}
+                />
+              );
+            })}
+
+          </div>
 
           <div className="checkboxGroup">
-            <label>
-              <input type="checkbox" /> Can be Sold
-            </label>
-            <label>
-              <input type="checkbox" /> Can be Purchased
-            </label>
+
+            {headerCheckbox.map((field) => {
+              const Renderer = FIELD_RENDERER[field.type];
+              if (!Renderer) return null;
+
+              return (
+                <label key={field.key}>
+                  <Renderer
+                    field={field}
+                    value={dataFormSection[field.key]}
+                    onChange={handleChange}
+                    mode={mode}
+                  />
+                  {field.label}
+                </label>
+              );
+            })}
+
           </div>
+
         </div>
 
         <div className="headerFormRight">
-
-          <img
-            src={image || imgDefault}
-            alt={alt}
-            style={{
-              cursor: mode === "view" ? "default" : "pointer",
-            }}
-            onClick={() => {
-              if (mode === "view") return;
-              fileInputRef.current?.click();
-            }}
-          />
-
-          {(mode === "edit" || mode === "create") && (
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-            />
-          )}
-
+          {renderFields(headerMedia)}
         </div>
 
       </div>
 
       <div className="sectionTabs">
+
         {sections.map((section) => (
           <button
             key={section.key}
@@ -191,33 +264,18 @@ function FormPage() {
             {section.label}
           </button>
         ))}
+
       </div>
 
       <div className="sectionForm">
 
-        <h3>{activeSectionData?.label}</h3>
-
         <div className="bodySection">
 
-          {activeSectionData?.fields?.map((fieldKey) => {
-            const field = INVENTORY_FIELDS[fieldKey];
-
-            if (!field) return null;
-
-            return (
-              <div key={field.key} className="fieldRow">
-                <label>{field.label}</label>
-
-                {FIELD_RENDERER[field.type]
-                  ? FIELD_RENDERER[field.type](
-                      field,
-                      dataFormSection[field.key],
-                      handleChange
-                    )
-                  : null}
-              </div>
-            );
-          })}
+          {activeSectionData?.columns?.map((column, index) => (
+            <div key={index} className="bodySectionColumn">
+              {renderFields(column)}
+            </div>
+          ))}
 
         </div>
 

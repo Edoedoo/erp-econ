@@ -2,7 +2,8 @@
     position: relative;
     width: fit-content;
   
-    --akasa-accent: #0fccfb;
+    /* --akasa-accent: #0fccfb; */
+    --akasa-accent: var(--color-accent);
     --akasa-primary: black;
   }
   

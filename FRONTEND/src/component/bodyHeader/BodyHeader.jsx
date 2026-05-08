@@ -1,5 +1,4 @@
 import { useLocation, useSearchParams } from "react-router-dom";
-import { MENU_LIST } from "../../config/MENU_LIST";
 import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY";
 
 import { getAvailableActions } from "../../config/actionEngine";
@@ -14,7 +13,6 @@ import btnList from "../../Assets/SVG/list.svg";
 import btnKanban from "../../Assets/SVG/kanban.svg";
 
 function BodyHeader({ context }) {
-
   const location = useLocation();
   const { go } = useAppNavigate();
 
@@ -27,17 +25,23 @@ function BodyHeader({ context }) {
   const [modulePath, viewPath] = segments;
 
   const isViewLevel = segments.length === 2;
-  const isActionLevel = segments.length === 3;
 
-  const currentMenu = MENU_LIST.find(
-    (item) => item.path === modulePath
-  );
+  const isFormMode =
+    route?.action === "create" ||
+    route?.action === "edit";
+
+  const isViewMode =
+    route?.action === "view";
 
   const currentModule = MODULE_REGISTRY[modulePath];
 
   const currentView = currentModule?.views?.find(
     (v) => v.path === viewPath
   );
+
+  const currentActions = route?.action
+    ? `/ ${route.action}`
+    : "";
 
   const viewType =
     params.get("view_type") ||
@@ -51,15 +55,15 @@ function BodyHeader({ context }) {
     view: viewPath,
     selectedIds,
     formData,
+    id: route?.id,
   };
 
-  const rawActions = currentView?.actions || {};
-  const flatActions = Object.values(rawActions)
-    .flat()
+  const rawActions =
+  (currentView?.actions || [])
     .filter(Boolean);
 
   const available = getAvailableActions({
-    actions: flatActions,
+    actions: rawActions,
     selectedIds,
   });
 
@@ -84,15 +88,12 @@ function BodyHeader({ context }) {
   return (
     <div className="body-header">
 
-      {/* TOP */}
       <div className="body-top">
 
         <div className="body-left">
           <div className="module-name">
-            <h4>{currentMenu?.name || ""}</h4>
-
             {currentView && (
-              <span
+              <h4
                 onClick={() =>
                   go({
                     module: modulePath,
@@ -100,9 +101,11 @@ function BodyHeader({ context }) {
                   })
                 }
               >
-                / {currentView.name}
-              </span>
+                {currentView.name}
+              </h4>
             )}
+
+            <span>{currentActions}</span>
           </div>
         </div>
 
@@ -114,7 +117,6 @@ function BodyHeader({ context }) {
 
       </div>
 
-      {/* CENTER ACTION */}
       <div className="body-center">
 
         {isViewLevel && (
@@ -145,61 +147,75 @@ function BodyHeader({ context }) {
           </div>
         )}
 
-        {isActionLevel && (
+        {isFormMode && (
           <div className="action-secondary">
-            {grouped.formActions?.map((action) => (
-              <button
-                key={action.key}
-                className="btn-secondary"
-                onClick={() => action.handler(uiContext)}
-              >
-                {action.label}
-              </button>
-            ))}
+            {grouped.formActions
+              ?.filter(action => action.key !== "edit")
+              .map((action) => (
+                <button
+                  key={action.key}
+                  className="btn-secondary"
+                  onClick={() => action.handler(uiContext)}
+                >
+                  {action.label}
+                </button>
+              ))}
+          </div>
+        )}
+
+        {isViewMode && (
+          <div className="action-secondary">
+            {grouped.formActions
+              ?.filter(action => action.key === "edit")
+              .map((action) => (
+                <button
+                  key={action.key}
+                  className="btn-secondary"
+                  onClick={() => action.handler(uiContext)}
+                >
+                  {action.label}
+                </button>
+              ))}
           </div>
         )}
 
       </div>
 
-      {/* BOTTOM */}
       <div className="body-bottom">
 
-        {selectedIds.length > 0 && (
+        {selectedIds.length > 0 && isViewLevel && (
           <div className="body-bottom-left">
 
-            {isViewLevel && (
-              <div className="action-contextual">
-                {grouped.selectionActions?.map((action) => (
-                  <button
-                    key={action.key}
-                    className="btn-secondary"
-                    onClick={() => action.handler(uiContext)}
-                  >
-                    {action.label}
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className="action-contextual">
+              {grouped.selectionActions?.map((action) => (
+                <button
+                  key={action.key}
+                  className="btn-secondary"
+                  onClick={() => action.handler(uiContext)}
+                >
+                  {action.label}
+                </button>
+              ))}
+            </div>
 
-            {isViewLevel && (
-              <div className="action-bulk">
-                {grouped.bulkActions?.map((action) => (
-                  <button
-                    key={action.key}
-                    className="btn-bulk-secondary"
-                    onClick={() => action.handler(uiContext)}
-                  >
-                    {action.label}
-                  </button>
-                ))}
-              </div>
-            )}
+            <div className="action-bulk">
+              {grouped.bulkActions?.map((action) => (
+                <button
+                  key={action.key}
+                  className="btn-bulk-secondary"
+                  onClick={() => action.handler(uiContext)}
+                >
+                  {action.label}
+                </button>
+              ))}
+            </div>
 
           </div>
         )}
 
         {isViewLevel && (
           <div className="body-bottom-right">
+
             <span
               className={viewType === "list" ? "active" : ""}
               onClick={handleListView}
@@ -213,6 +229,7 @@ function BodyHeader({ context }) {
             >
               <img src={btnKanban} alt="" />
             </span>
+
           </div>
         )}
 

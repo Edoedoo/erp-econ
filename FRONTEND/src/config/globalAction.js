@@ -23,13 +23,12 @@ export const GLOBAL_ACTIONS = {
     path: "edit/:id", 
     label: "Edit",
     icon: "edit",
-    group: ACTION_GROUP.SELECTION,
+    group: ACTION_GROUP.FORM,
     scope: ACTION_SCOPE.SINGLE,
-    requires: { selection: true, min: 1, max: 1 },
     element: FormPage,
 
-    handler: ({ go, module, view, selectedIds }) => {
-      go(toAction(module, view, "edit", selectedIds[0]))
+    handler: ({ go, module, view, id }) => {
+      go(toAction(module, view, "edit", id))
     }
   },
 
@@ -41,6 +40,7 @@ export const GLOBAL_ACTIONS = {
     group: ACTION_GROUP.SELECTION,
     scope: ACTION_SCOPE.SINGLE,
     requires: { selection: true, min: 1, max: 1 },
+    element: FormPage,
 
     handler: ({ go, module, view, selectedIds }) => {
       go(toAction(module, view, "view", selectedIds[0]))

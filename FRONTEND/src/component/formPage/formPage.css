@@ -1,165 +1,278 @@
 .formPage {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    width: 95%;
-    margin: auto;
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    background: var(--color-bg-card);
-  }
-  
-  /* =========================
-     TOP MODE (create/edit/view)
-  ========================= */
-  .topHeaderForm {
-    display: flex;
-    padding: 10px;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--color-border);
-  }
-  
-  .topHeaderForm span {
-    color: var(--color-primary);
-    font-size: 14px;
-    font-style: oblique;
-    font-weight: 800;
-  }
-  
-  /* =========================
-     HEADER FORM (MAIN CARD)
-  ========================= */
-  .headerForm {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  
-  /* LEFT SIDE */
-  .headerFormLeft {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  /* CHECKBOX */
-  .checkboxGroup {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  
-  .checkboxGroup label {
-    font-size: 12px;
-    color: var(--color-text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-  
-  /* RIGHT IMAGE */
-  .headerFormRight {
-    width: 140px;
-    height: 140px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .headerFormRight img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  /* =========================
-     SECTION TABS
-  ========================= */
-  .sectionTabs {
-    display: flex;
-    margin-bottom: 12px;
-    overflow-x: auto;
-    border-top: 1px solid var(--color-border);
-  }
-  
-  .sectionTabs button {
-    padding: 8px 14px;
-    border-radius: 1px solid var(--color-border);
-    border: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    font-size: 13px;
-    white-space: nowrap;
-    transition: 0.2s;
-  }
-  
-  .sectionTabs button:hover {
-    background: var(--color-border);
-  }
-  
-  .sectionTabs button.active {
-    border-top: 1px solid var(--color-accent);
-    border-left: 1px solid var(--color-bg-card);
-    border-right: 1px solid var(--color-bg-card);
-    border-bottom: 1px solid var(--color-bg-card);
-    background: var(--color-bg-card);
-    color: var(--color-accent);
-  }
-  
-  /* =========================
-     SECTION FORM AREA
-  ========================= */
-  .sectionForm {
-    padding: 16px;
-    border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 97%;
+  margin: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  background: var(--color-bg-card);
+}
 
-  }
-  
-  .sectionForm h3 {
-    color: var(--color-text-main);
-  }
-  
-  /* FIELD GRID */
-  .bodySection {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  
-  /* FIELD ROW */
-  .fieldRow {
-    display: flex;
-    gap: 30px;
-  }
-  
-  .fieldRow label {
-    font-size: 13px;
-    color: var(--color-text-secondary);
-    align-items: end;
-    display: flex;
-  }
-  
-  /* INPUT STYLE */
-  .fieldRow input[type="text"],
-  .fieldRow input[type="number"],
-  select {
-    padding: 8px 10px;
-    outline: none;
-    transition: 0.2s;
-    border: none;
-    border-bottom: 1px solid var(--color-border);
-    min-width: 200px;
-  }
+/* =========================
+   TOP MODE
+========================= */
+.topHeaderForm {
+  display: flex;
+  padding: 0 10px;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+}
 
-  
-  /* CHECKBOX INSIDE FIELD */
-  .fieldRow input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-  }
+.topHeaderForm span {
+  color: var(--color-text-secondary);
+  font-size: 11px;
+}
+
+/* =========================
+   HEADER FORM
+========================= */
+.headerForm {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px;
+}
+
+/* LEFT */
+.headerFormLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.headerFormLeft input {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+}
+
+/* GROUPS */
+.checkboxGroup,
+.nameGroup {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nameGroup {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.favoriteWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FAVORITE */
+.favoriteField {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  font-size: 42px;
+  line-height: 1;
+
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-text-secondary);
+
+  transition: 0.2s;
+  padding: 0;
+}
+
+.favoriteField.active {
+  color: #facc15;
+  -webkit-text-stroke: 1.5px #facc15;
+}
+
+.favoriteField:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* CHECKBOX LABEL */
+.checkboxGroup label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =========================
+   IMAGE FIELD WRAPPER
+========================= */
+.headerFormRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+
+  background: var(--color-bg);
+}
+
+.headerFormRight img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   SECTION TABS
+========================= */
+.sectionTabs {
+  display: flex;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.sectionTabs button {
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: 0.2s;
+  background: transparent;
+}
+
+.sectionTabs button:hover {
+  background: var(--color-border);
+}
+
+.sectionTabs button.active {
+  border-top: 1px solid var(--color-accent);
+  border-left: 1px solid var(--color-bg-card);
+  border-right: 1px solid var(--color-bg-card);
+  border-bottom: 1px solid var(--color-bg-card);
+  background: var(--color-bg-card);
+  color: var(--color-accent);
+}
+
+/* =========================
+   SECTION BODY
+========================= */
+.sectionForm {
+  padding: 16px;
+}
+
+/* GRID ENGINE (FLEXIBLE COLUMN SYSTEM) */
+.bodySection {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* COLUMN */
+.bodySectionColumn {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =========================
+   FIELD ROW (FIXED ALIGNMENT)
+========================= */
+.fieldRow {
+  display: grid;
+  grid-template-columns: 140px 200px;
+  align-items: center;
+  min-height: 36px;
+  gap: 12px;
+
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.fieldRow label {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* =========================
+   RADIO
+========================= */
+.radioGroupField {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 36px;
+}
+
+.radioGroupField label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+/* =========================
+   INPUT BASE STYLE FIX
+========================= */
+.formPage input[type="number"],
+.formPage select,
+.formPage input[type="text"] {
+  height: 36px;
+  padding: 0 10px;
+  outline: none;
+  transition: 0.2s;
+  border: none;
+  min-width: 200px;
+  box-sizing: border-box;
+  color: var(--color-text-secondary);
+  background: transparent;
+}
+
+.formPage input[type="text"] {
+  border-bottom: 1px solid var(--color-border);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/* =========================
+   CHECKBOX / RADIO
+========================= */
+.formPage input[type="checkbox"],
+.formPage input[type="radio"] {
+  accent-color: var(--color-accent);
+}
+
+/* =========================
+   IMAGE FIELD (RENDERER)
+========================= */
+.imageFieldOnly {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FIXED SQUARE */
+.imageFieldOnly img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+
+  cursor: pointer;
+  transition: 0.2s;
+
+  display: block;
+}
+
+.imageFieldOnly img:hover {
+  opacity: 0.85;
+}

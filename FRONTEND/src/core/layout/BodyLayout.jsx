@@ -2,12 +2,17 @@ import { Outlet, useLocation } from "react-router-dom";
 import BodyHeader from "../../component/bodyHeader/BodyHeader";
 import { resolvePath } from "../router/routerResolver";
 import NotFound from "../../component/404page.jsx/404page";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+
+import { getGlobalUom } from "../../core/shared/uomStore";
 
 function BodyLayout() {
   const location = useLocation();
 
   const [formData, setFormData] = useState({});
+  const [record, setRecord] = useState(null);
+
+  const [selectedRows, setSelectedRows] = useState([]);
 
   let route;
 
@@ -19,26 +24,58 @@ function BodyLayout() {
   }
 
   useEffect(() => {
+
     setFormData({});
+    setSelectedRows([]);
+
+    if (!route?.id) {
+      setRecord(null);
+      return;
+    }
+
+    if (route.view === "units_of_measure") {
+
+      const allUom = getGlobalUom();
+
+      const found = allUom.find(
+        (item) => item.id === route.id
+      );
+
+      setRecord(found || null);
+    }
+
   }, [location.pathname]);
 
-  const layoutContext = {
+  const layoutContext = useMemo(() => {
+    return {
+      route: {
+        ...route,
+        record
+      },
+
+      formStore: {
+        formData,
+        setFormData,
+      },
+
+      selectedRows,
+      setSelectedRows,
+
+    };
+  }, [
     route,
-    formStore: {
-      formData,
-      setFormData,
-    },
-  };
+    record,
+    formData,
+    selectedRows
+  ]);
 
   return (
     <div id="bodyLayout">
 
-      {/* HEADER */}
       <div id="body-header">
         <BodyHeader context={layoutContext} />
       </div>
 
-      {/* CONTENT */}
       <div id="body-content">
         <Outlet context={layoutContext} />
       </div>

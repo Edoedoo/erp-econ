@@ -1,13 +1,6 @@
 
-// =====================================================
-// 🔹 GLOBAL COLUMN REGISTRY
-// =====================================================
 
 export const COLUMN_REGISTRY = {
-
-    // =====================================================
-    // 🔹 BASIC / UNIVERSAL
-    // =====================================================
   
     id: {
       key: "id",
@@ -42,10 +35,7 @@ export const COLUMN_REGISTRY = {
       label: "Active",
       render: (row) => (row.active ? "Yes" : "No")
     },
-  
-    // =====================================================
-    // 🔹 DATE / TIME
-    // =====================================================
+
   
     create_date: {
       key: "create_date",
@@ -62,10 +52,7 @@ export const COLUMN_REGISTRY = {
       key: "date",
       label: "Date"
     },
-  
-    // =====================================================
-    // 🔹 STATUS / STATE
-    // =====================================================
+
   
     state: {
       key: "state",
@@ -85,10 +72,7 @@ export const COLUMN_REGISTRY = {
       key: "status",
       label: "Status"
     },
-  
-    // =====================================================
-    // 🔹 USER / RELATION
-    // =====================================================
+
   
     user: {
       key: "user",
@@ -109,10 +93,7 @@ export const COLUMN_REGISTRY = {
       key: "company",
       label: "Company"
     },
-  
-    // =====================================================
-    // 🔹 PRODUCT / INVENTORY
-    // =====================================================
+
   
     product: {
       key: "product",
@@ -131,7 +112,7 @@ export const COLUMN_REGISTRY = {
   
     uom: {
       key: "uom",
-      label: "Unit"
+      label: "Unit of Measure"
     },
   
     qty: {
@@ -163,10 +144,7 @@ export const COLUMN_REGISTRY = {
       label: "Outgoing",
       align: "right"
     },
-  
-    // =====================================================
-    // 🔹 LOCATION / WAREHOUSE
-    // =====================================================
+
   
     location: {
       key: "location",
@@ -187,10 +165,7 @@ export const COLUMN_REGISTRY = {
       key: "warehouse",
       label: "Warehouse"
     },
-  
-    // =====================================================
-    // 🔹 SALES / PURCHASE
-    // =====================================================
+
   
     order_number: {
       key: "order_number",
@@ -216,10 +191,7 @@ export const COLUMN_REGISTRY = {
       key: "customer",
       label: "Customer"
     },
-  
-    // =====================================================
-    // 🔹 FINANCIAL
-    // =====================================================
+
   
     price: {
       key: "price",
@@ -256,6 +228,11 @@ export const COLUMN_REGISTRY = {
       label: "Currency"
     },
 
+    uom_category: {
+      key: "uom_category",
+      label: "Category"
+    },
+
 
 
     scheduled_date: {
@@ -263,14 +240,14 @@ export const COLUMN_REGISTRY = {
         label: "Scheduled Date"
       },
       
-      parent: {
-        key: "parent",
-        label: "Parent"
-      },
-      
-      uom_type: {
-        key: "uom_type",
-        label: "UoM Type"
-      }
+    parent: {
+      key: "parent",
+      label: "Parent"
+    },
+    
+    uom_type: {
+      key: "uom_type",
+      label: "UoM Type"
+    }
   
   }
