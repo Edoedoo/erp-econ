@@ -193,13 +193,34 @@
   color: var(--color-text-secondary);
 }
 
+.tooltipHelp {
+  display: flex;
+  position: relative;
+  top: -9px;
+  color: var(--color-accent);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.messageTooltip {
+  position: absolute;
+  color: var(--color-accent);
+  bottom: -15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  font-size: 12px;
+}
+
 .fieldRow label {
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 4px;
+  position: relative;
 }
-
+.fieldRow select {
+  cursor: pointer;
+}
 /* =========================
    RADIO
 ========================= */
@@ -247,6 +268,8 @@
 .formPage input[type="checkbox"],
 .formPage input[type="radio"] {
   accent-color: var(--color-accent);
+  height: 10px;
+  cursor: pointer;
 }
 
 /* =========================
@@ -275,4 +298,18 @@
 
 .imageFieldOnly img:hover {
   opacity: 0.85;
+}
+
+.sectionInformation {
+  display: flex;
+  width: fit-content;
+  /* margin: auto; */
+  margin-top: 10px;
+  border-radius: 2px;
+  color: var(--color-accent);
+  font-size: 13px;
+  /* border: 1px solid var(--color-border);
+  border-radius: 5px; */
+  padding: 10px 0px;
+  font-style: oblique;
 }

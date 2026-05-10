@@ -56,7 +56,7 @@ export const INVENTORY_FIELDS = {
     key: "type",
     label: "Product Type",
     type: "radioField",
-    default: "storable",
+    default: "",
 
     options: [
       { value: "storable", label: "Storable Product" },
@@ -539,7 +539,7 @@ uom_name: {
   key: "name",
   label: "Unit Name",
   type: "text",
-  required: true
+  required: true,
 },
 
 uom_key: {
@@ -554,7 +554,10 @@ uom_category: {
   label: "Category",
   type: "relation",
   relation: "uom_category",
-  required: true
+  required: true,
+
+  message:
+    "Units within the same category can convert between each other."
 },
 
 uom_type: {
@@ -563,18 +566,17 @@ uom_type: {
   type: "select",
   required: true,
 
+  message:
+    "Defines how this unit relates to the reference unit inside the same category.",
+
   options: [
     {
-      label: "Reference Unit",
-      value: "reference unit"
-    },
-    {
       label: "Bigger than reference",
-      value: "bigger than reference"
+      value: "bigger"
     },
     {
       label: "Smaller than reference",
-      value: "smaller than reference"
+      value: "smaller"
     }
   ]
 },
@@ -583,21 +585,27 @@ uom_factor: {
   key: "factor",
   label: "Ratio",
   type: "number",
-  default: 1
+  default: 1,
+  message:
+    "Defines the conversion ratio against the reference unit. Example: 1 Box = 12 Pcs."
 },
 
 uom_rounding: {
   key: "rounding",
   label: "Rounding Precision",
   type: "number",
-  default: 0.01
+  default: 0.01,
+  message:
+    "Controls quantity rounding precision during stock operations and calculations."
 },
 
 uom_active: {
   key: "active",
   label: "Active",
   type: "boolean",
-  default: true
+  default: true,
+  message:
+    "Inactive units will be hidden from selection but existing records remain unchanged."
 },
 
 uom_isDefault: {

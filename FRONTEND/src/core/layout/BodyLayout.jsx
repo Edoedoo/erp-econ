@@ -12,7 +12,7 @@ function BodyLayout() {
   const [formData, setFormData] = useState({});
   const [record, setRecord] = useState(null);
 
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectedIds, setselectedIds] = useState([]);
 
   let route;
 
@@ -26,7 +26,7 @@ function BodyLayout() {
   useEffect(() => {
 
     setFormData({});
-    setSelectedRows([]);
+    setselectedIds([]);
 
     if (!route?.id) {
       setRecord(null);
@@ -58,17 +58,16 @@ function BodyLayout() {
         setFormData,
       },
 
-      selectedRows,
-      setSelectedRows,
+      selectedIds,
+      setselectedIds,
 
     };
   }, [
     route,
     record,
     formData,
-    selectedRows
+    selectedIds
   ]);
-
   return (
     <div id="bodyLayout">
 

@@ -134,5 +134,16 @@ export const GLOBAL_ACTIONS = {
     }
   },
 
+  SELECTEDIDS: {
+    key: "selectedIds",
+    label: "selected id",
+    group: ACTION_GROUP.BULK,
+    scoup: ACTION_SCOPE.SINGLE,
+
+    handler: ({
+      
+    })
+  }
+
   
 }

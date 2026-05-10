@@ -12,17 +12,22 @@ import Search from "../search/search";
 import btnList from "../../Assets/SVG/list.svg";
 import btnKanban from "../../Assets/SVG/kanban.svg";
 
+
+
+
 function BodyHeader({ context }) {
   const location = useLocation();
   const { go } = useAppNavigate();
 
   const [params, setParams] = useSearchParams();
 
-  const { route, formStore } = context || {};
+  const { route, formStore, selectedIds } = context || {};
   const formData = formStore?.formData;
 
   const segments = location.pathname.split("/").filter(Boolean);
   const [modulePath, viewPath] = segments;
+
+  const selectedRow = context.selectedIds.length 
 
   const isViewLevel = segments.length === 2;
 
@@ -47,8 +52,6 @@ function BodyHeader({ context }) {
     params.get("view_type") ||
     currentView?.defaultView;
 
-  const selectedIds = [];
-
   const uiContext = {
     go,
     module: modulePath,
@@ -68,7 +71,6 @@ function BodyHeader({ context }) {
   });
 
   const grouped = groupActions(available);
-
   const updateParams = (callback) => {
     const next = new URLSearchParams(params);
     callback(next);
@@ -93,14 +95,7 @@ function BodyHeader({ context }) {
         <div className="body-left">
           <div className="module-name">
             {currentView && (
-              <h4
-                onClick={() =>
-                  go({
-                    module: modulePath,
-                    view: currentView.path,
-                  })
-                }
-              >
+              <h4 onClick={() => go({ module: modulePath, view: currentView.path, }) } >
                 {currentView.name}
               </h4>
             )}
@@ -122,11 +117,7 @@ function BodyHeader({ context }) {
         {isViewLevel && (
           <div className="action-primary">
             {grouped.mainActions?.map((action) => (
-              <button
-                key={action.key}
-                className="btn-primary"
-                onClick={() => action.handler(uiContext)}
-              >
+              <button key={action.key} className="btn-primary" onClick={() => action.handler(uiContext)} >
                 {action.label}
               </button>
             ))}
@@ -136,11 +127,7 @@ function BodyHeader({ context }) {
         {isViewLevel && (
           <div className="action-secondary">
             {grouped.listActions?.map((action) => (
-              <button
-                key={action.key}
-                className="btn-secondary"
-                onClick={() => action.handler(uiContext)}
-              >
+              <button key={action.key} className="btn-secondary" onClick={() => action.handler(uiContext)} >
                 {action.label}
               </button>
             ))}
@@ -152,11 +139,7 @@ function BodyHeader({ context }) {
             {grouped.formActions
               ?.filter(action => action.key !== "edit")
               .map((action) => (
-                <button
-                  key={action.key}
-                  className="btn-secondary"
-                  onClick={() => action.handler(uiContext)}
-                >
+                <button key={action.key} className="btn-secondary" onClick={() => action.handler(uiContext)} >
                   {action.label}
                 </button>
               ))}
@@ -168,11 +151,7 @@ function BodyHeader({ context }) {
             {grouped.formActions
               ?.filter(action => action.key === "edit")
               .map((action) => (
-                <button
-                  key={action.key}
-                  className="btn-secondary"
-                  onClick={() => action.handler(uiContext)}
-                >
+                <button key={action.key} className="btn-secondary" onClick={() => action.handler(uiContext)} >
                   {action.label}
                 </button>
               ))}
@@ -185,26 +164,9 @@ function BodyHeader({ context }) {
 
         {selectedIds.length > 0 && isViewLevel && (
           <div className="body-bottom-left">
-
-            <div className="action-contextual">
-              {grouped.selectionActions?.map((action) => (
-                <button
-                  key={action.key}
-                  className="btn-secondary"
-                  onClick={() => action.handler(uiContext)}
-                >
-                  {action.label}
-                </button>
-              ))}
-            </div>
-
             <div className="action-bulk">
               {grouped.bulkActions?.map((action) => (
-                <button
-                  key={action.key}
-                  className="btn-bulk-secondary"
-                  onClick={() => action.handler(uiContext)}
-                >
+                <button key={action.key} className="btn-bulk-secondary" onClick={() => action.handler(uiContext)} >
                   {action.label}
                 </button>
               ))}
@@ -213,20 +175,21 @@ function BodyHeader({ context }) {
           </div>
         )}
 
+        {selectedIds.length > 0 && (
+          <div className="body-bottom-center">
+            <h5>{selectedIds.length} selected</h5>
+
+          </div>
+        )}
+
         {isViewLevel && (
           <div className="body-bottom-right">
 
-            <span
-              className={viewType === "list" ? "active" : ""}
-              onClick={handleListView}
-            >
+            <span className={viewType === "list" ? "active" : ""} onClick={handleListView} >
               <img src={btnList} alt="" />
             </span>
 
-            <span
-              className={viewType === "kanban" ? "active" : ""}
-              onClick={handleKanbanView}
-            >
+            <span className={viewType === "kanban" ? "active" : ""} onClick={handleKanbanView} >
               <img src={btnKanban} alt="" />
             </span>
 

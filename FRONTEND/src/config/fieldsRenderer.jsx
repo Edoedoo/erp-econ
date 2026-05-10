@@ -32,6 +32,36 @@ const resolveRelationOptions = (relation) => {
   }
 };
 
+export const resolveRelationLabel = (
+  relation,
+  value
+) => {
+  const options =
+    resolveRelationOptions(relation);
+
+  const found = options.find(
+    (item) => item.key === value
+  );
+
+  return (
+    found?.name ||
+    found?.label ||
+    value
+  );
+};
+
+export const resolveBaseUom = (
+  category
+) => {
+  const uoms = getGlobalUom();
+
+  return uoms.find(
+    (uom) =>
+      uom.uom_category === category &&
+      uom.type === "base"
+  );
+};
+
 const TextField = ({
   field,
   value,

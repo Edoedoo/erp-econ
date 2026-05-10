@@ -13,6 +13,7 @@ import { setGlobalUom } from "../../core/shared/uomStore";
 import { setGlobalUomCategories } from "../../core/shared/uomCategoryStore";
 
 import "./layout.css";
+import Loading from "../../component/loading/loading";
 
 function AppLayout() {
   const [ready, setReady] = useState(false);
@@ -52,7 +53,14 @@ function AppLayout() {
   }, []);
 
   if (!ready) {
-    return <div>Loading system...</div>;
+    return <div 
+      style={{
+        display: "flex", 
+        height: "100%", 
+        justifyContent: "center"
+      }} >
+        <Loading message={"please wait"}/>
+    </div>;
   }
 
   return (

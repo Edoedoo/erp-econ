@@ -5,6 +5,8 @@ import EmptyState from "../emptyState/emptyState"
 import { useAppNavigate } from "../../core/router/useAppNavigate"
 import { toAction } from "../../core/router/routerSercive"
 
+import btnFilter from "../../Assets/SVG/btnFilter.svg"
+
 import "./viewType.css"
 
 export const renderCell = (column, row) => {
@@ -22,13 +24,17 @@ export function ListView({ data = [], columns = [] }) {
   const { go } = useAppNavigate()
   const route = layoutContext?.route
 
-  const [selectedRows, setSelectedRows] = useState([])
+  const selectedIds =
+    layoutContext?.selectedIds || []
+
+  const setselectedIds =
+    layoutContext?.setselectedIds
 
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "asc"
   })
-
+  
   const sortedData = useMemo(() => {
 
     const result = [...data]
@@ -106,7 +112,7 @@ export function ListView({ data = [], columns = [] }) {
   const handleCheckboxChange = (e, row) => {
     e.stopPropagation()
 
-    setSelectedRows((prev) => {
+    setselectedIds((prev) => {
 
       const exists = prev.includes(row.id)
 
@@ -118,7 +124,7 @@ export function ListView({ data = [], columns = [] }) {
         updated = [...prev, row.id]
       }
 
-      layoutContext.setSelectedRows(updated)
+      setselectedIds(updated)
 
       return updated
     })
@@ -133,9 +139,9 @@ export function ListView({ data = [], columns = [] }) {
       updated = sortedData.map((row) => row.id)
     }
 
-    layoutContext.setSelectedRows(updated)
+    setselectedIds(updated)
 
-    setSelectedRows(updated)
+    setselectedIds(updated)
   }
 
   if (!columns.length || !data.length) {
@@ -161,7 +167,7 @@ export function ListView({ data = [], columns = [] }) {
             type="checkbox"
             checked={
               sortedData.length > 0 &&
-              selectedRows.length === sortedData.length
+              selectedIds.length === sortedData.length
             }
             onClick={(e) => e.stopPropagation()}
             onChange={handleSelectAll}
@@ -179,11 +185,7 @@ export function ListView({ data = [], columns = [] }) {
             {column.label}
 
             {sortConfig.key === column.key && (
-              <span style={{color: "#d7d7d7"}}>
-                {sortConfig.direction === "asc"
-                  ? " ▲"
-                  : " ▼"} 
-              </span>
+              <img src={btnFilter} alt="" style={{display: "flex", width: "14px"}}/>
             )}
 
           </div>
@@ -194,7 +196,7 @@ export function ListView({ data = [], columns = [] }) {
       {sortedData.map((row, index) => {
 
         const isSelected =
-          selectedRows.includes(row.id)
+          selectedIds.includes(row.id)
 
         return (
           <div

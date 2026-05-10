@@ -1,12 +1,11 @@
 import { useOutletContext } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import "./formPage.css";
 
 import { FIELD_RENDERER } from "../../config/fieldsRenderer";
 
 function FormPage() {
   const layoutContext = useOutletContext();
-
 
   const route = layoutContext?.route || {};
   const setFormData = layoutContext?.formStore?.setFormData;
@@ -30,6 +29,10 @@ function FormPage() {
   const [activeSection, setActiveSection] = useState(
     sections[0]?.key || null
   );
+
+  const [openTooltip, setOpenTooltip] = useState(null);
+
+  const tooltipRef = useRef(null);
 
   const activeSectionData = useMemo(
     () => sections.find((s) => s.key === activeSection),
@@ -87,6 +90,19 @@ function FormPage() {
     setDataFormSection(initial);
   }, [headerMedia, headerName, headerCheckbox, sections, record]);
 
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setOpenTooltip(null)
+    }
+  
+    document.addEventListener("click", handleClickOutside)
+  
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [])
+
+
   const payload = useMemo(() => {
     return {
       meta: {
@@ -135,10 +151,12 @@ function FormPage() {
     sections,
     dataFormSection,
   ]);
-
   useEffect(() => {
-    setFormData?.(payload);
-  }, [payload, setFormData]);
+    if (setFormData) {
+      setFormData(payload)
+    }
+  }, [payload, setFormData])
+
 
   const renderFields = (fields = []) => {
     return fields.map((field) => {
@@ -161,7 +179,33 @@ function FormPage() {
 
       return (
         <div key={field.key} className="fieldRow">
-          <label>{field.label}</label>
+          <label className="fieldLabel" ref={tooltipRef}>
+            {field.label}
+
+            {field.message ? (
+              <span
+                className="tooltipHelp"
+                onClick={(event) => {
+                  event.stopPropagation()
+                
+                  setOpenTooltip((prev) =>
+                    prev === field.key ? null : field.key
+                  )
+                }}
+              >
+                ?
+              </span>
+            ) : null}
+
+            <span
+              className="messageTooltip"
+              style={{
+                display: openTooltip === field.key ? "flex" : "none",
+              }}
+            >
+              {field.message}
+            </span>
+          </label>
 
           {Renderer ? (
             <Renderer
@@ -182,7 +226,6 @@ function FormPage() {
     <div className="formPage">
 
       <div className="topHeaderForm">
-        <span>{mode}</span>
       </div>
 
       <div className="headerForm">
@@ -268,18 +311,21 @@ function FormPage() {
       </div>
 
       <div className="sectionForm">
-
         <div className="bodySection">
-
           {activeSectionData?.columns?.map((column, index) => (
             <div key={index} className="bodySectionColumn">
               {renderFields(column)}
             </div>
           ))}
-
         </div>
 
-      </div>
+        <div className="sectionInformation">
+          {typeof activeSectionData?.information === "function"
+            ? activeSectionData.information(dataFormSection)
+            : activeSectionData?.information}
+        </div>
+
+        </div>
 
     </div>
   );

@@ -1,15 +1,8 @@
 import { INVENTORY_FIELDS } from "../modules/inventory/config/inventoryFields";
-// =====================================================
-// 🔹 MODULE REGISTRIES
-// =====================================================
 
 const MODULE_FIELDS = [
   INVENTORY_FIELDS,
 ];
-
-// =====================================================
-// 🔹 GLOBAL FIELD REGISTRY
-// =====================================================
 
 export const GLOBAL_FIELDS = {};
 
@@ -32,10 +25,6 @@ MODULE_FIELDS.forEach((moduleFields) => {
     }
   );
 });
-
-// =====================================================
-// 🔹 FIELD HELPER
-// =====================================================
 
 export const field = (
   name,

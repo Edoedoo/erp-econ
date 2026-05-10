@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useLocation, useSearchParams } from "react-router-dom"
 import { SEARCH_CONFIG } from "./searchConfig"
 
 import btnSearch from "../../Assets/SVG/btnSearch.svg"
@@ -9,17 +9,16 @@ import btnFavorite from "../../Assets/SVG/btnFavorite.svg"
 import btnMarkSearch from "../../Assets/SVG/btnCloseMarkSearch.svg"
 
 import "./search.css"
+import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
 
 function Search({ groupByOptions = [], favoriteOptions = [] }) {
+  const location = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams()
   const wrapperRef = useRef(null)
 
   const [openDropdown, setOpenDropdown] = useState(null)
 
-
-  // ======================
-  // HELPERS
-  // ======================
 
   const getFilters = () => {
     const filters = []
@@ -48,9 +47,6 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
   const groupBy = searchParams.get("group_by")
   const favorite = searchParams.get("favorite")
 
-  // ======================
-  // CLICK OUTSIDE
-  // ======================
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -61,10 +57,6 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
     document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
-
-  // ======================
-  // HANDLERS
-  // ======================
 
   const updateParams = (callback) => {
     setSearchParams(prev => {
@@ -119,21 +111,23 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
     })
   }
 
-  // ======================
-  // RENDER
-  // ======================
+
+  const segments = location.pathname.split("/").filter(Boolean);
+  const [modulePath, viewPath] = segments;
+  const currentModule = MODULE_REGISTRY[modulePath];
+
+  const currentView = currentModule?.views?.find(
+    (v) => v.path === viewPath
+  );
+
+
   return (
     <div className="body-search" ref={wrapperRef}>
 
-      {/* ======================
-          SEARCH BAR
-      ====================== */}
       <div className="search">
 
-        {/* TAGS */}
         <div className="search-tags">
 
-          {/* FILTER TAGS */}
           {filters.map(f => (
             <span key={f.key} className="markSearch">
               <img src={btnFilter} alt="" className="markSearch1"/>
@@ -147,7 +141,6 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
             
           ))}
 
-          {/* GROUP BY */}
           {groupBy && (
             <span className="markSearch">
               <img src={btnGroupBy} alt="" className="markSearch1"/>
@@ -160,7 +153,6 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
             </span>
           )}
 
-          {/* FAVORITE */}
           {favorite && (
             <span className="markSearch">
               <img src={btnFavorite} alt="" className="markSearch1"/>
@@ -174,38 +166,33 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
           )}
 
         </div>
+        {currentView.search === true && (
+          <>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={keyword}
+            onChange={handleSearchChange}
+            />
 
-        {/* INPUT */}
-        <input
-          type="text"
-          placeholder="Search..."
-          value={keyword}
-          onChange={handleSearchChange}
-        />
-
-        {/* BUTTON */}
-        <button className="btn-icon">
-          <img src={btnSearch} alt="search" />
-        </button>
+          <button className="btn-icon">
+            <img src={btnSearch} alt="search" />
+          </button>
+            </>
+          )}
       </div>
 
-      {/* ======================
-          ACTION BUTTONS
-      ====================== */}
       <div className="action-search">
         <div className="btn-action-search">
 
-          {/* FILTER */}
           <div className="dropdown-wrapper">
-            <button
-              className={openDropdown === "filter" ? "active" : ""}
-              onClick={() =>
-                setOpenDropdown(openDropdown === "filter" ? null : "filter")
-              }
-            >
-              <img src={btnFilter} alt="" />
-              Filter
-            </button>
+            {currentView.filter === true && (
+              <button
+                className={openDropdown === "filter" ? "active" : ""}
+                onClick={() => setOpenDropdown(openDropdown === "filter" ? null : "filter") }>
+                <img src={btnFilter} alt="" /> Filter
+              </button>
+            )}
 
             {openDropdown === "filter" && (
               <div className="dropdown-search">
@@ -230,17 +217,18 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
             )}
           </div>
 
-          {/* GROUP BY */}
           <div className="dropdown-wrapper">
-            <button
-              className={openDropdown === "group" ? "active" : ""}
-              onClick={() =>
-                setOpenDropdown(openDropdown === "group" ? null : "group")
-              }
-            >
-              <img src={btnGroupBy} alt="" />
-              Group By
-            </button>
+            {currentView.group_by === true && (
+              <button
+                className={openDropdown === "group" ? "active" : ""}
+                onClick={() =>
+                  setOpenDropdown(openDropdown === "group" ? null : "group")
+                }
+              >
+                <img src={btnGroupBy} alt="" />
+                Group By
+              </button>              
+            )}
 
             {openDropdown === "group" && (
               <div className="dropdown-search">
@@ -257,17 +245,18 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
             )}
           </div>
 
-          {/* FAVORITE */}
           <div className="dropdown-wrapper">
-            <button
-              className={openDropdown === "favorite" ? "active" : ""}
-              onClick={() =>
-                setOpenDropdown(openDropdown === "favorite" ? null : "favorite")
-              }
-            >
-              <img src={btnFavorite} alt="" />
-              Favorite
-            </button>
+            {currentView.favorite === true && (
+              <button
+                className={openDropdown === "favorite" ? "active" : ""}
+                onClick={() =>
+                  setOpenDropdown(openDropdown === "favorite" ? null : "favorite")
+                }
+              >
+                <img src={btnFavorite} alt="" />
+                Favorite
+              </button>
+            )}
 
             {openDropdown === "favorite" && (
               <div className="dropdown-search">

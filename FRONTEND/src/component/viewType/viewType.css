@@ -69,6 +69,10 @@
   .table-sort-header {
     cursor: pointer;
     user-select: none;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
   }
 
   .table-row input {
