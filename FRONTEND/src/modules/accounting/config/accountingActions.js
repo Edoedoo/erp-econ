@@ -1,5 +1,5 @@
 
-import { ACTION_SCOPE, ACTION_GROUP } from "../../../config/actionCore"
+import { ACTION_SCOPE, ACTION_GROUP } from "../../../config/builder/actionCore"
 
 export const ACCOUNTING_ACTIONS = {
 

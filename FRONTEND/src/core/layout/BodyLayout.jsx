@@ -13,6 +13,8 @@ function BodyLayout() {
   const [record, setRecord] = useState(null);
 
   const [selectedIds, setselectedIds] = useState([]);
+  const [viewRows, setViewRows] = useState([])
+  const [currentIndex, setCurrentIndex] = useState(-1)
 
   let route;
 
@@ -42,9 +44,40 @@ function BodyLayout() {
       );
 
       setRecord(found || null);
+      if (viewRows?.length) {
+
+        const index =
+          viewRows.findIndex(
+            item => item.id === route.id
+          )
+      
+        setCurrentIndex(index)
+      }
     }
 
   }, [location.pathname]);
+
+  useEffect(() => {
+
+    const savedRows =
+      sessionStorage.getItem(
+        "econix_view_rows"
+      )
+  
+    const savedIndex =
+      sessionStorage.getItem(
+        "econix_current_index"
+      )
+  
+    if (savedRows) {
+      setViewRows(JSON.parse(savedRows))
+    }
+  
+    if (savedIndex !== null) {
+      setCurrentIndex(Number(savedIndex))
+    }
+  
+  }, [])
 
   const layoutContext = useMemo(() => {
     return {
@@ -61,12 +94,23 @@ function BodyLayout() {
       selectedIds,
       setselectedIds,
 
+      viewRows,
+      setViewRows,
+
+      currentIndex,
+      setCurrentIndex,
+
+      setRecord
+
+
     };
   }, [
     route,
     record,
     formData,
-    selectedIds
+    selectedIds,
+    viewRows,
+    currentIndex
   ]);
   return (
     <div id="bodyLayout">

@@ -3,7 +3,7 @@ import { useSearchParams, Outlet, useOutletContext } from "react-router-dom";
 import { VIEW_TYPE } from "../../../../component/viewType/viewType";
 
 import { getGlobalUom } from "../../../../core/shared/uomStore";
-import { DEFAULT_UOM_CATEGORY } from "../../../../config/defaultCategoryUom";
+import { DEFAULT_UOM_CATEGORY } from "../../../../config/defaultData/defaultCategoryUom";
 
 function UnitOfMeasure() {
     const [params] = useSearchParams();

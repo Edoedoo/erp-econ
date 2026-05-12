@@ -1,10 +1,10 @@
-import { col } from "../../../../config/columnHelper";
-import { ACTIONS } from "../../../../config/actions";
-import { field } from "../../../../config/fieldsHelper";
+import { col } from "../../../../config/builder/columnHelper";
+import { ACTIONS } from "../../../../config/builder/actions";
+import { field } from "../../../../config/builder/fieldsHelper";
 
 import UnitOfMeasure from "../../pages/views/UnitOfMeasurePage";
 
-import { resolveBaseUom } from "../../../../config/fieldsRenderer";
+import { resolveBaseUom } from "../../../../config/renderer/fieldsRenderer";
 
 export const UNIT_OF_MEASURE = {
   key: "units_of_measure",
@@ -23,6 +23,7 @@ export const UNIT_OF_MEASURE = {
     ACTIONS.DISCARD,
     ACTIONS.VIEW,
     ACTIONS.EDIT,
+    ACTIONS.PRINTOUT,
   ],
 
   columns: [
@@ -68,15 +69,15 @@ export const UNIT_OF_MEASURE = {
             baseUnit?.name || "unit";
         
           if (type === "base") {
-            return `${name} will be used as the main unit for this category.`;
+            return `${name} will be used as the main unit for this category (1 ${name} = ${ratio} ${baseName})`;
           }
         
           if (type === "bigger") {
-            return `1 ${name} contains ${ratio} ${baseName}.`;
+            return `1 ${name} contains ${ratio} ${baseName} (1 ${name} = ${ratio} ${baseName})`;
           }
         
           if (type === "smaller") {
-            return `${ratio} ${name} makes 1 ${baseName}.`;
+            return `${ratio} ${name} makes 1 ${baseName} (${ratio} ${baseName} = 1 ${name})`;
           }
         
           return "";

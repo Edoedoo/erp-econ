@@ -571,11 +571,11 @@ uom_type: {
 
   options: [
     {
-      label: "Bigger than reference",
+      label: "Bigger",
       value: "bigger"
     },
     {
-      label: "Smaller than reference",
+      label: "Smaller",
       value: "smaller"
     }
   ]

@@ -1,5 +1,5 @@
 import AccountingPage from "../pages/AccountingPage"
-import { ACTIONS } from "../../../config/actions"
+import { ACTIONS } from "../../../config/builder/actions"
 
 export const ACCOUNTING_MENU = {
   path: "accounting",

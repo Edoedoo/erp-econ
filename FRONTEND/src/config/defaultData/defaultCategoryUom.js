@@ -27,5 +27,10 @@ export const DEFAULT_UOM_CATEGORY = [
   {
     key: "time",
     name: "Time"
-  }
+  },
+
+  {
+    key: "package",
+    name: "Package"
+  },
 ];

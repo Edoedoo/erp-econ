@@ -1,6 +1,6 @@
-import { ACTIONS } from "../../../../config/actions";
-import { col } from "../../../../config/columnHelper";
-import { field } from "../../../../config/fieldsHelper";
+import { ACTIONS } from "../../../../config/builder/actions";
+import { col } from "../../../../config/builder/columnHelper";
+import { field } from "../../../../config/builder/fieldsHelper";
 
 import ProductsPage from "../../pages/views/ProductsPage";
 
@@ -20,7 +20,6 @@ export const PRODUCT = {
       ACTIONS.EDIT,
       ACTIONS.DELETE,
       ACTIONS.VIEW,
-      ACTIONS.DUPLICATE,
       ACTIONS.SAVE,
       ACTIONS.DISCARD,
       ACTIONS.PRINT_LABELS,

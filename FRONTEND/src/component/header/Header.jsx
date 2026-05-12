@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
-import { ICONS } from "../../config/iconConfig"
-import { MENU_LIST } from "../../config/MENU_LIST"
-import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
+import { ICONS } from "../../config/builder/iconConfig"
+import { MENU_LIST } from "../../config/defaultData/MENU_LIST"
+import { MODULE_REGISTRY } from "../../config/builder/MODULE_REGISTRY"
 
 import { useState, useRef, useEffect } from "react"
 import { useAppNavigate } from "../../core/router/useAppNavigate"
@@ -18,22 +18,13 @@ function Header() {
   const segments = location.pathname.split("/").filter(Boolean)
   const [modulePath, viewPath] = segments
 
-  // =========================
-  // 🔹 UI MENU (ONLY UI)
-  // =========================
   const currentMenu = MENU_LIST.find(
     item => item.path === modulePath
   )
 
-  // =========================
-  // 🔹 DOMAIN MODULE
-  // =========================
   const currentModule = MODULE_REGISTRY[modulePath]
   const views = currentModule?.views || []
 
-  // =========================
-  // 🔹 GROUPING VIEWS
-  // =========================
   const groupedViews = views.reduce((acc, view) => {
     const group = view.group || "Other"
 
@@ -42,10 +33,6 @@ function Header() {
 
     return acc
   }, {})
-
-  // =========================
-  // 🔹 HANDLERS
-  // =========================
   const toggleDropdown = (group) => {
     setActiveGroup(prev => (prev === group ? null : group))
   }
@@ -65,9 +52,6 @@ function Header() {
     setActiveGroup(null)
   }
 
-  // =========================
-  // 🔹 CLICK OUTSIDE
-  // =========================
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -81,10 +65,6 @@ function Header() {
     document.addEventListener("click", handleClickOutside)
     return () => document.removeEventListener("click", handleClickOutside)
   }, [])
-
-  // =========================
-  // 🔹 RENDER
-  // =========================
   return (
     <>
       {/* MENU BUTTON */}

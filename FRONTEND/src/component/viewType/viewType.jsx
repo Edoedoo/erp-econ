@@ -23,13 +23,16 @@ export function ListView({ data = [], columns = [] }) {
   const layoutContext = useOutletContext()
   const { go } = useAppNavigate()
   const route = layoutContext?.route
-
   const selectedIds =
     layoutContext?.selectedIds || []
-
   const setselectedIds =
     layoutContext?.setselectedIds
+  const setViewRows =
+  layoutContext?.setViewRows
+  const setCurrentIndex =
+    layoutContext?.setCurrentIndex
 
+  
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "asc"
@@ -99,6 +102,26 @@ export function ListView({ data = [], columns = [] }) {
   }
 
   const handleRowClick = (row) => {
+
+    setViewRows(sortedData)
+  
+    const index =
+      sortedData.findIndex(
+        item => item.id === row.id
+      )
+  
+    setCurrentIndex(index)
+
+    sessionStorage.setItem(
+      "econix_view_rows",
+      JSON.stringify(sortedData)
+    )
+    
+    sessionStorage.setItem(
+      "econix_current_index",
+      String(index)
+    )
+  
     go(
       toAction(
         route.module,
@@ -125,11 +148,10 @@ export function ListView({ data = [], columns = [] }) {
       }
 
       setselectedIds(updated)
-
       return updated
     })
   }
-
+  
   const handleSelectAll = (e) => {
     e.stopPropagation()
 
@@ -138,8 +160,6 @@ export function ListView({ data = [], columns = [] }) {
     if (e.target.checked) {
       updated = sortedData.map((row) => row.id)
     }
-
-    setselectedIds(updated)
 
     setselectedIds(updated)
   }
@@ -175,19 +195,26 @@ export function ListView({ data = [], columns = [] }) {
         </div>
 
         {columns.map((column) => (
-
           <div
             key={column.key}
             className="table-sort-header"
             onClick={() => handleSort(column.key)}
           >
-
             {column.label}
 
-            {sortConfig.key === column.key && (
-              <img src={btnFilter} alt="" style={{display: "flex", width: "14px"}}/>
+            {sortConfig.key === column.key ? (
+              sortConfig.direction === "asc" ? (
+                <> (a-z)</>
+              ) : (
+                <> (z-a)</>
+              )
+            ) : (
+              <img
+                src={btnFilter}
+                alt=""
+                style={{ display: "flex", width: "14px" }}
+              />
             )}
-
           </div>
 
         ))}
@@ -209,7 +236,7 @@ export function ListView({ data = [], columns = [] }) {
             style={{
               gridTemplateColumns: `40px repeat(${columns.length}, 1fr)`
             }}
-            onClick={() => handleRowClick(row)}
+            onClick={() => handleRowClick(row, index)}
           >
 
             <div onClick={(e) => e.stopPropagation()} style={{cursor: "default"}}>

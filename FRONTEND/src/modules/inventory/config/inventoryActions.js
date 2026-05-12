@@ -1,4 +1,4 @@
-import { ACTION_SCOPE, ACTION_GROUP } from "../../../config/actionCore"
+import { ACTION_SCOPE, ACTION_GROUP } from "../../../config/builder/actionCore"
 
 export const INVENTORY_ACTIONS = {
 
@@ -6,9 +6,12 @@ export const INVENTORY_ACTIONS = {
     key: "validate",
     label: "Validate",
     icon: "check-circle",
-    group: ACTION_GROUP.SELECTION,
+    group: ACTION_GROUP.BOTTOM_LEFT,
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
+
+    visible: ( selectedIds) =>
+      selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
       console.log("VALIDATE", selectedIds)
@@ -19,9 +22,12 @@ export const INVENTORY_ACTIONS = {
     key: "set_quantities",
     label: "Set Quantities",
     icon: "layers",
-    group: ACTION_GROUP.BULK,
+    group: ACTION_GROUP.BOTTOM_LEFT,
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
+
+    visible: ( selectedIds) =>
+      selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
       console.log("SET QUANTITIES", selectedIds)
@@ -32,9 +38,12 @@ export const INVENTORY_ACTIONS = {
     key: "update_quantities",
     label: "Update Quantities",
     icon: "edit-3",
-    group: ACTION_GROUP.BULK,
+    group: ACTION_GROUP.BOTTOM_LEFT,
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
+
+    visible: ( selectedIds) =>
+      selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
       console.log("UPDATE QUANTITIES", selectedIds)
@@ -45,9 +54,12 @@ export const INVENTORY_ACTIONS = {
     key: "print_labels",
     label: "Print Labels",
     icon: "printer",
-    group: ACTION_GROUP.BULK,
+    group: ACTION_GROUP.BOTTOM_LEFT,
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
+
+    visible: ( selectedIds) =>
+      selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
       console.log("PRINT LABELS", selectedIds)

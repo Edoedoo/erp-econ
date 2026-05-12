@@ -2,29 +2,59 @@
 .body-header {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
+  min-width: 0;
 }
 
+.body-top,
+.body-center,
+.body-bottom {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  padding: 3px 0;
+}
 .body-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 6px 10px;
-  gap: 20px;
-  border-bottom: 1px solid var(--color-border);
+  align-items: start;
+}
+.body-center {
+  border-bottom : 1px solid var(--color-border);
 }
 
-.body-left {
+
+.topLeft,
+.centerLeft,
+.bottomLeft {
+  display: flex;
+  align-items: center;
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  min-width: 0;
+  gap: 10px;
+}
+.bottomLeft {
+  flex: none;
 }
 
-.body-right {
-  flex: 0 0 360px;
+.topRight,
+.centerRight,
+.bottomRight {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  gap: 10px;
+}
+
+.bottomCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  gap: 10px;
+  font-size: 12px;
+  flex: 1;
 }
 
 .module-name {
@@ -35,29 +65,15 @@
 }
 
 .module-name h4 {
-  color: var(--color-primary);
+  color: var(--color-accent);
   cursor: pointer;
 }
 
 .module-name span {
   color: var(--color-text-secondary);
-  font-size: 14px;
 }
 
-.body-center {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 10px;
-}
-
-.action-primary,
-.action-secondary {
-  display: flex;
-  gap: 6px;
-}
-
-.btn-primary,
-.btn-secondary {
+.body-header button {
   background: var(--color-accent);
   color: var(--color-text-light);
   border: none;
@@ -67,60 +83,82 @@
   font-size: 11px;
 }
 
-.btn-primary:hover,
-.btn-secondary:hover {
+.body-header span {
+  font-size: 12px;
+  cursor: default;
+}
+
+.centerLeft button:hover {
   background: var(--color-accent-hover);
 }
 
-.body-bottom {
+.centerRight button, .bottomLeft button, .topRight button{
+  background: none;
+  color: var(--color-text-secondary);
+  font-size: 13px;
   display: flex;
-  justify-content: space-between;
-  min-height: 30px;
+  align-items: center;
+  gap: 1px;
+  padding: 0;
+  
 }
-.body-bottom-left {
-  display: flex;
-  padding: 6px 10px;
-  gap: 15px;
-}
-
-.action-contextual {
-  display: flex;
-  gap: 5px;
+.centerRight img {
+  height: 14px;
 }
 
-.action-bulk {
-  display: flex;
-  gap: 15px;
-}
-.btn-bulk-secondary {
+.bottomLeft button {
   color: var(--color-accent);
   font-weight: 600;
-  font-size: 12px;
-}
-.btn-bulk-secondary:hover {
-  color: var(--color-accent-hover);
 }
 
-.body-bottom-right{
+.bottomCenter span {
   display: flex;
-  margin-left: auto;
+  flex-wrap: nowrap;
   gap: 7px;
-  justify-content: end;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  border-radius: 2px;
+  padding: 2px;
+}
+
+.bottomCenter .x-selected {
+  padding: 0px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.bottomCenter img {
+  width: 14px;
+}
+
+.bottomCenter .selectedAction {
+  border: none;
+  gap: 0;
+  color: var(--color-text-secondary);
+  padding: 2px 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
   align-items: center;
 }
-.body-bottom-right span.active{
-  border-radius: 1px;
-  box-shadow: 0 0 2px;
-  color: var(--color-primary-hover);
-  height: 20px;
+.bottomCenter .selectedAction:hover {
+  transform: scale(1.1);
+  transition: .2s;
+}
+.bottomRight span{
+  opacity: 0.6;
+}
+.bottomRight span.active{
+  opacity: 1;
 }
 
-.body-bottom-right img {
+.bottomRight img {
   display: flex;
-  width: 20px;
+  width: 16px;
   cursor: pointer;
 }
 
-.body-bottom-right img:hover {
+.bottomRight img:hover {
   background: var(--color-border);
 }

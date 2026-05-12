@@ -9,7 +9,7 @@ import btnFavorite from "../../Assets/SVG/btnFavorite.svg"
 import btnMarkSearch from "../../Assets/SVG/btnCloseMarkSearch.svg"
 
 import "./search.css"
-import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
+import { MODULE_REGISTRY } from "../../config/builder/MODULE_REGISTRY"
 
 function Search({ groupByOptions = [], favoriteOptions = [] }) {
   const location = useLocation();
@@ -123,7 +123,7 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
 
   return (
     <div className="body-search" ref={wrapperRef}>
-
+      {currentView.search === true && (
       <div className="search">
 
         <div className="search-tags">
@@ -166,8 +166,6 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
           )}
 
         </div>
-        {currentView.search === true && (
-          <>
           <input
             type="text"
             placeholder="Search..."
@@ -178,9 +176,8 @@ function Search({ groupByOptions = [], favoriteOptions = [] }) {
           <button className="btn-icon">
             <img src={btnSearch} alt="search" />
           </button>
-            </>
-          )}
       </div>
+          )}
 
       <div className="action-search">
         <div className="btn-action-search">

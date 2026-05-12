@@ -1,4 +1,4 @@
-import { DEFAULT_UOM } from "./defaultUom";
+import { DEFAULT_UOM } from "../../config/defaultData/defaultUom";
 
 export class UoMUnionEngine {
   constructor(dbUom = []) {
@@ -17,7 +17,7 @@ export class UoMUnionEngine {
 
       uom_category: item.uom_category || null,
 
-      type: item.type || "reference",
+      type: item.type || "base",
 
       factor:
         typeof item.factor === "number"
@@ -59,4 +59,5 @@ export class UoMUnionEngine {
       ...this.getDbUom()
     ];
   }
+  
 }

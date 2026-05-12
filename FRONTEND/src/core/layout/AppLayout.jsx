@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import Header from "../../component/header/Header";
 
 import { fetchUomFromDatabase } from "../../core/repository/uomRepository";
-import { fetchUomCategoriesFromDatabase } from "../repository/categoryUomRepository";
+import { fetchUomCategoriesFromDatabase } from "../repository/categoryUomRepository"
 
-import { UoMUnionEngine } from "../../config/uomUnionEngine";
-import { UoMCategoryUnionEngine } from "../../config/categoryUomUnionEngine";
+import { UoMUnionEngine } from "../engine/uomUnionEngine"
+import { UoMCategoryUnionEngine } from "../engine/categoryUomUnionEngine"
 
-import { setGlobalUom } from "../../core/shared/uomStore";
-import { setGlobalUomCategories } from "../../core/shared/uomCategoryStore";
+import { setGlobalUom } from "../shared/uomStore";
+import { setGlobalUomCategories } from "../shared/uomCategoryStore"
 
 import "./layout.css";
 import Loading from "../../component/loading/loading";

@@ -9,9 +9,6 @@
   background: var(--color-bg-card);
 }
 
-/* =========================
-   TOP MODE
-========================= */
 .topHeaderForm {
   display: flex;
   padding: 0 10px;
@@ -24,9 +21,6 @@
   font-size: 11px;
 }
 
-/* =========================
-   HEADER FORM
-========================= */
 .headerForm {
   display: flex;
   justify-content: space-between;
@@ -34,7 +28,6 @@
   padding: 16px;
 }
 
-/* LEFT */
 .headerFormLeft {
   flex: 1;
   display: flex;
@@ -43,11 +36,10 @@
 }
 
 .headerFormLeft input {
-  font-size: 18px;
+  font-size: 14px;
   color: var(--color-text-secondary);
 }
 
-/* GROUPS */
 .checkboxGroup,
 .nameGroup {
   display: flex;
@@ -69,13 +61,12 @@
   justify-content: center;
 }
 
-/* FAVORITE */
 .favoriteField {
   border: none;
   background: transparent;
   cursor: pointer;
 
-  font-size: 42px;
+  font-size: 35px;
   line-height: 1;
 
   color: transparent;
@@ -86,8 +77,8 @@
 }
 
 .favoriteField.active {
-  color: #facc15;
-  -webkit-text-stroke: 1.5px #facc15;
+  color: var(--color-favorite);
+  -webkit-text-stroke: 1.5px var(--color-favorite);
 }
 
 .favoriteField:disabled {
@@ -95,7 +86,6 @@
   opacity: 0.7;
 }
 
-/* CHECKBOX LABEL */
 .checkboxGroup label {
   font-size: 12px;
   color: var(--color-text-secondary);
@@ -104,9 +94,6 @@
   gap: 4px;
 }
 
-/* =========================
-   IMAGE FIELD WRAPPER
-========================= */
 .headerFormRight {
   display: flex;
   align-items: center;
@@ -122,9 +109,6 @@
   object-fit: cover;
 }
 
-/* =========================
-   SECTION TABS
-========================= */
 .sectionTabs {
   display: flex;
   margin-bottom: 12px;
@@ -156,41 +140,32 @@
   color: var(--color-accent);
 }
 
-/* =========================
-   SECTION BODY
-========================= */
 .sectionForm {
-  padding: 16px;
+  padding: 5px 16px;
 }
 
-/* GRID ENGINE (FLEXIBLE COLUMN SYSTEM) */
 .bodySection {
   display: flex;
-  gap: 40px;
   flex-wrap: wrap;
+  gap: 60px;
 }
 
-/* COLUMN */
 .bodySectionColumn {
-  flex: 1;
-  min-width: 320px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 
-/* =========================
-   FIELD ROW (FIXED ALIGNMENT)
-========================= */
 .fieldRow {
   display: grid;
-  grid-template-columns: 140px 200px;
+  grid-template-columns: 140px auto;
   align-items: center;
   min-height: 36px;
   gap: 12px;
 
   font-size: 13px;
   color: var(--color-text-secondary);
+  justify-content: start;
 }
 
 .tooltipHelp {
@@ -204,15 +179,15 @@
 
 .messageTooltip {
   position: absolute;
-  color: var(--color-accent);
-  bottom: -15px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
   font-size: 12px;
+  background: var(--color-bg-menu);
+  bottom: 25px;
+  z-index: 99;
+  width: 200px;
+  padding: 10px;
 }
 
 .fieldRow label {
-  white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -221,9 +196,7 @@
 .fieldRow select {
   cursor: pointer;
 }
-/* =========================
-   RADIO
-========================= */
+
 .radioGroupField {
   display: flex;
   align-items: center;
@@ -234,18 +207,15 @@
 .radioGroupField label {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 1px;
   font-size: 12px;
 }
 
-/* =========================
-   INPUT BASE STYLE FIX
-========================= */
 .formPage input[type="number"],
 .formPage select,
 .formPage input[type="text"] {
   height: 36px;
-  padding: 0 10px;
+  padding: 0;
   outline: none;
   transition: 0.2s;
   border: none;
@@ -255,6 +225,10 @@
   background: transparent;
 }
 
+option {
+  background: var(--color-bg-menu);
+}
+
 .formPage input[type="text"] {
   border-bottom: 1px solid var(--color-border);
   border-top: none;
@@ -262,9 +236,6 @@
   border-right: none;
 }
 
-/* =========================
-   CHECKBOX / RADIO
-========================= */
 .formPage input[type="checkbox"],
 .formPage input[type="radio"] {
   accent-color: var(--color-accent);
@@ -272,19 +243,15 @@
   cursor: pointer;
 }
 
-/* =========================
-   IMAGE FIELD (RENDERER)
-========================= */
 .imageFieldOnly {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* FIXED SQUARE */
 .imageFieldOnly img {
-  width: 110px;
-  height: 110px;
+  width: 65px;
+  height: 65px;
   object-fit: cover;
 
   border-radius: 8px;
@@ -303,13 +270,10 @@
 .sectionInformation {
   display: flex;
   width: fit-content;
-  /* margin: auto; */
   margin-top: 10px;
   border-radius: 2px;
   color: var(--color-accent);
   font-size: 13px;
-  /* border: 1px solid var(--color-border);
-  border-radius: 5px; */
   padding: 10px 0px;
   font-style: oblique;
 }

@@ -104,6 +104,11 @@ export const COLUMN_REGISTRY = {
       key: "product_variant",
       label: "Variant"
     },
+    
+    product_category: {
+      key: "product_category",
+      label: "Product Category"
+    },
   
     category: {
       key: "category",

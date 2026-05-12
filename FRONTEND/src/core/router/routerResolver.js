@@ -1,5 +1,5 @@
-import { MENU_LIST } from "../../config/MENU_LIST"
-import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
+import { MENU_LIST } from "../../config/defaultData/MENU_LIST"
+import { MODULE_REGISTRY } from "../../config/builder/MODULE_REGISTRY"
 
 export const resolvePath = (pathname) => {
   const segments = pathname.split("/").filter(Boolean)

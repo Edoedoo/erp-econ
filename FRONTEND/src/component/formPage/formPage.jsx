@@ -2,15 +2,16 @@ import { useOutletContext } from "react-router-dom";
 import { useState, useEffect, useMemo, useRef } from "react";
 import "./formPage.css";
 
-import { FIELD_RENDERER } from "../../config/fieldsRenderer";
+import { FIELD_RENDERER } from "../../config/renderer/fieldsRenderer";
 
 function FormPage() {
   const layoutContext = useOutletContext();
-
+  
   const route = layoutContext?.route || {};
   const setFormData = layoutContext?.formStore?.setFormData;
 
   const { action, currentView, record } = route;
+
   const form = currentView?.form || {};
   const sections = form?.sections || [];
 

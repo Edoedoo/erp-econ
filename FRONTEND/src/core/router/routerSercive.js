@@ -1,4 +1,4 @@
-import { MODULE_REGISTRY } from "../../config/MODULE_REGISTRY"
+import { MODULE_REGISTRY } from "../../config/builder/MODULE_REGISTRY"
 
 const findModule = (key) => {
   const module = MODULE_REGISTRY[key]

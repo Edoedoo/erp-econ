@@ -1,4 +1,4 @@
-import { INVENTORY_FIELDS } from "../modules/inventory/config/inventoryFields";
+import { INVENTORY_FIELDS } from "../../modules/inventory/config/inventoryFields";
 
 const MODULE_FIELDS = [
   INVENTORY_FIELDS,

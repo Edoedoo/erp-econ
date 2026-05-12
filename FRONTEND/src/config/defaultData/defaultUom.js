@@ -138,7 +138,7 @@ export const DEFAULT_UOM = [
   // =========================
   {
     key: "hour",
-    name: "Jam",
+    name: "Hour",
     uom_category: "time",
     type: "base",
     factor: 1,
@@ -149,7 +149,7 @@ export const DEFAULT_UOM = [
 
   {
     key: "day",
-    name: "Hari",
+    name: "Day",
     uom_category: "time",
     type: "bigger",
     factor: 24,
@@ -164,9 +164,9 @@ export const DEFAULT_UOM = [
   // =========================
   {
     key: "working_hour",
-    name: "Jam Kerja",
-    uom_category: "working_time",
-    type: "base",
+    name: "Working Hour",
+    uom_category: "time",
+    type: "bigger",
     factor: 1,
     rounding: 1,
     active: true,
@@ -175,8 +175,8 @@ export const DEFAULT_UOM = [
 
   {
     key: "working_day",
-    name: "Hari Kerja",
-    uom_category: "working_time",
+    name: "Working Day",
+    uom_category: "time",
     type: "bigger",
     factor: 8,
     rounding: 1,
@@ -186,10 +186,10 @@ export const DEFAULT_UOM = [
 
   {
     key: "working_week",
-    name: "Minggu Kerja",
-    uom_category: "working_time",
+    name: "Working Week",
+    uom_category: "time",
     type: "bigger",
-    factor: 40,
+    factor: 48,
     rounding: 1,
     active: true,
     isDefault: true
@@ -245,29 +245,5 @@ export const DEFAULT_UOM = [
     isDefault: true
   },
 
-  // =========================
-  // DIGITAL
-  // =========================
-  {
-    key: "license",
-    name: "License",
-    uom_category: "license",
-    type: "base",
-    factor: 1,
-    rounding: 1,
-    active: true,
-    isDefault: true
-  },
-
-  {
-    key: "subscription_month",
-    name: "Subscription / Month",
-    uom_category: "subscription",
-    type: "base",
-    factor: 1,
-    rounding: 1,
-    active: true,
-    isDefault: true
-  }
 
 ];

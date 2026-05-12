@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { MENU_LIST } from "./config/MENU_LIST"
-import { MODULE_REGISTRY } from "./config/MODULE_REGISTRY"
+import { MENU_LIST } from "./config/defaultData/MENU_LIST"
+import { MODULE_REGISTRY } from "./config/builder/MODULE_REGISTRY"
 
 import AppLayout from "./core/layout/AppLayout"
 import BodyLayout from "./core/layout/BodyLayout"

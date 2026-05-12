@@ -1,8 +1,7 @@
-import imgDefault from "../Assets/SVG/imgDefault.svg";
+import imgDefault from "../../Assets/SVG/imgDefault.svg";
 
-import { getGlobalUom } from "../core/shared/uomStore";
-import { getGlobalUomCategories } from "../core/shared/uomCategoryStore";
-
+import { getGlobalUom } from "../../core/shared/uomStore";
+import { getGlobalUomCategories } from "../../core/shared/uomCategoryStore";
 
 const resolveValue = (field, value) => {
   if (value !== undefined && value !== null) return value;
@@ -32,10 +31,7 @@ const resolveRelationOptions = (relation) => {
   }
 };
 
-export const resolveRelationLabel = (
-  relation,
-  value
-) => {
+export const resolveRelationLabel = ( relation, value ) => {
   const options =
     resolveRelationOptions(relation);
 

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom"
-import { DASHBOARD } from "../../config/Dashboard"
+import { DASHBOARD } from "../../config/builder/Dashboard"
 import { toView } from "../../core/router/routerSercive"
 import { useAppNavigate } from "../../core/router/useAppNavigate"
 import "./dashboard.css"

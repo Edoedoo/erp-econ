@@ -1,5 +1,5 @@
 import './menu.css';
-import { MENU_LIST } from "../../config/MENU_LIST";
+import { MENU_LIST } from '../../config/defaultData/MENU_LIST';
 import { useAppNavigate } from '../../core/router/useAppNavigate';
 import { toModule } from '../../core/router/routerSercive';
 
@@ -41,7 +41,7 @@ function Menu() {
             onClick={() => go(toModule(item.key))}
           >
             <img src={item.icon} alt={item.name} />
-            <h1>{item.name}</h1>
+            <h3>{item.name}</h3>
           </div>
         ))}
       </div>

@@ -1,5 +1,5 @@
 
-import { DEFAULT_UOM_CATEGORY } from "./defaultCategoryUom";
+import { DEFAULT_UOM_CATEGORY } from "../../config/defaultData/defaultCategoryUom";
 
 export class UoMCategoryUnionEngine {
   constructor(dbCategories = []) {

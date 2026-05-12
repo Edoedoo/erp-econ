@@ -28,7 +28,7 @@
   }
   .btn-icon img {
     display: flex;
-    width: 25px;
+    width: 18px;
   }
   
   
@@ -43,19 +43,12 @@
   .markSearch {
     display: flex;
     align-items: center;
-    background: none;
     border-radius: 4px;
-    font-size: 12px;
-    min-width: 0;
-    max-width: 90px;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
-    box-shadow: none;
-    border: 1px solid var(--color-border);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
   }
   .markSearch span {
-    padding: 2px 6px;
-  
+    padding: 0 6px;
     max-width: 120px;        
     white-space: nowrap;     
     overflow: hidden;      

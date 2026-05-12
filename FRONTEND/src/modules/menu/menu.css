@@ -7,7 +7,7 @@
 .menu-grid {
     padding-top: 100px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 25px;
     max-width: 800px;
     margin: auto; 
@@ -29,19 +29,16 @@
   transition: 0.2s;
 
   border-radius: 7px;
+  font-size: 14px;
 }
 
 /* ICON */
 .menu-card img {
-    width: 75px;
-    height: 75px;
+    width: 55px;
     margin-bottom: 10px;
 }
 
 /* TEXT */
-.menu-card h1 {
-    font-size: 14px;
-}
 
 /* HOVER EFFECT */
 .menu-card:hover {

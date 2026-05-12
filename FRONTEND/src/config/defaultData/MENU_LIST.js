@@ -1,4 +1,5 @@
-import { ICONS } from "./iconConfig"
+
+import { ICONS } from "../builder/iconConfig"
 export const MENU_LIST = [
   {
     key: "accounting",
