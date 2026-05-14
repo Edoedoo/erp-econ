@@ -1,4 +1,4 @@
-export const DEFAULT_UOM_CATEGORY = [
+export const UOM_CATEGORIES = [
   {
     key: "unit",
     name: "Unit"

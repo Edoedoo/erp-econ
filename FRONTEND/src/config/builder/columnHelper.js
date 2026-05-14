@@ -1,6 +1,7 @@
-import { COLUMN_REGISTRY } from "../registry/columnRegistry"
+import { GLOBAL_COLUMNS } from "../../defaults/ui/columns/globalColumns"
+ 
 
 export const col = (name, override = {}) => ({
-  ...COLUMN_REGISTRY[name],
+  ...GLOBAL_COLUMNS[name],
   ...override
 })

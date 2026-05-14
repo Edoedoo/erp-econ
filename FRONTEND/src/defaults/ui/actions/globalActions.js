@@ -1,9 +1,9 @@
-import { ACTION_SCOPE, ACTION_GROUP } from "../builder/actionCore"
-import { toAction, toView } from "../../core/router/routerSercive"
-import FormPage from "../../component/formPage/formPage"
+import { ACTION_SCOPE, ACTION_GROUP } from "../../../config/builder/actionCore"
+import { toAction, toView } from "../../../core/router/routerSercive"
+import FormPage from "../../../component/formPage/formPage"
 
-import svgImport from "../../Assets/SVG/import.svg"
-import svgExport from "../../Assets/SVG/export.svg"
+import svgImport from "../../../Assets/SVG/import.svg"
+import svgExport from "../../../Assets/SVG/export.svg"
 
 export const GLOBAL_ACTIONS = {
 

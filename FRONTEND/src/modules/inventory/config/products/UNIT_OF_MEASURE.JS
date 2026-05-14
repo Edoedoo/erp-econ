@@ -31,7 +31,7 @@ export const UNIT_OF_MEASURE = {
       label: "Units of Measure"
     }),
 
-    col("uom_category"),
+    col("category"),
 
     col("type", {
       label: "Type"
@@ -53,33 +53,33 @@ export const UNIT_OF_MEASURE = {
         information: (values) => {
           const name =
             values.name || "Unit";
-        
+
           const type =
             values.type;
-        
+
           const ratio =
             values.factor || 1;
-        
+
           const baseUnit =
             resolveBaseUom(
               values.uom_category
             );
-        
+
           const baseName =
             baseUnit?.name || "unit";
-        
+
           if (type === "base") {
             return `${name} will be used as the main unit for this category (1 ${name} = ${ratio} ${baseName})`;
           }
-        
+
           if (type === "bigger") {
             return `1 ${name} contains ${ratio} ${baseName} (1 ${name} = ${ratio} ${baseName})`;
           }
-        
+
           if (type === "smaller") {
             return `${ratio} ${name} makes 1 ${baseName} (${ratio} ${baseName} = 1 ${name})`;
           }
-        
+
           return "";
         },
 

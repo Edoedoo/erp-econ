@@ -4,7 +4,7 @@ import { toView } from "../../core/router/routerSercive"
 import { useAppNavigate } from "../../core/router/useAppNavigate"
 import "./dashboard.css"
 
-function Dashboard () {
+function Dashboard() {
 
   const { go } = useAppNavigate()
   const location = useLocation()
@@ -42,25 +42,26 @@ function Dashboard () {
       <div className="dashboard-grid">
         {currentList.map((card) => {
           return (
-          <div key={card.key} className="dashboard-card">
-            <h4 className="title-card" onClick={() => handleGoView(card)}>
-              {card.name}
-            </h4>
-            <div className="main-card">
-              <button className="btnToProcess" onClick={() => handleGoProcess(card)}>
-                {proses} TO PROCESS
-              </button>
+            <div key={card.key} className="dashboard-card">
+              <h4 className="title-card" onClick={() => handleGoView(card)}>
+                {card.name}
+              </h4>
+              <div className="main-card">
+                <button className="btnToProcess" onClick={() => handleGoProcess(card)}>
+                  {proses} TO PROCESS
+                </button>
 
-              <div className="status">
-                {card.statuses.map((status) => (
-                  <h5 key={status} onClick={() => handleGoStatus(card, status)}>
-                    {status}
-                  </h5>
-                ))}
+                <div className="status">
+                  {card.statuses.map((status) => (
+                    <h5 key={status} onClick={() => handleGoStatus(card, status)}>
+                      {status}
+                    </h5>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )
+        }
         )}
       </div>
     </div>

@@ -506,113 +506,113 @@ export const INVENTORY_FIELDS = {
     type: "image"
   },
 
-// =========================
-// UOM CATEGORY
-// =========================
+  // =========================
+  // UOM CATEGORY
+  // =========================
 
-uomCategoryName: {
-  key: "uomCategoryName",
-  label: "UOM Category Name",
-  type: "text",
-  required: true
-},
+  uomCategoryName: {
+    key: "uomCategoryName",
+    label: "UOM Category Name",
+    type: "text",
+    required: true
+  },
 
-uomCategoryKey: {
-  key: "uomCategoryKey",
-  label: "UOM Category Key",
-  type: "text",
-  required: true
-},
+  uomCategoryKey: {
+    key: "uomCategoryKey",
+    label: "UOM Category Key",
+    type: "text",
+    required: true
+  },
 
-uomCategoryActive: {
-  key: "uomCategoryActive",
-  label: "Active",
-  type: "boolean",
-  default: true
-},
+  uomCategoryActive: {
+    key: "uomCategoryActive",
+    label: "Active",
+    type: "boolean",
+    default: true
+  },
 
-// =========================
-// UOM
-// =========================
+  // =========================
+  // UOM
+  // =========================
 
-uom_name: {
-  key: "name",
-  label: "Unit Name",
-  type: "text",
-  required: true,
-},
+  uom_name: {
+    key: "name",
+    label: "Unit Name",
+    type: "text",
+    required: true,
+  },
 
-uom_key: {
-  key: "key",
-  label: "Unit Key",
-  type: "text",
-  required: true
-},
+  uom_key: {
+    key: "key",
+    label: "Unit Key",
+    type: "text",
+    required: true
+  },
 
-uom_category: {
-  key: "uom_category",
-  label: "Category",
-  type: "relation",
-  relation: "uom_category",
-  required: true,
+  uom_category: {
+    key: "uom_category",
+    label: "Category",
+    type: "relation",
+    relation: "uom_category",
+    required: true,
 
-  message:
-    "Units within the same category can convert between each other."
-},
+    message:
+      "Units within the same category can convert between each other."
+  },
 
-uom_type: {
-  key: "type",
-  label: "Type",
-  type: "select",
-  required: true,
+  uom_type: {
+    key: "type",
+    label: "Type",
+    type: "select",
+    required: true,
 
-  message:
-    "Defines how this unit relates to the reference unit inside the same category.",
+    message:
+      "Defines how this unit relates to the reference unit inside the same category.",
 
-  options: [
-    {
-      label: "Bigger",
-      value: "bigger"
-    },
-    {
-      label: "Smaller",
-      value: "smaller"
-    }
-  ]
-},
+    options: [
+      {
+        label: "Bigger",
+        value: "bigger"
+      },
+      {
+        label: "Smaller",
+        value: "smaller"
+      }
+    ]
+  },
 
-uom_factor: {
-  key: "factor",
-  label: "Ratio",
-  type: "number",
-  default: 1,
-  message:
-    "Defines the conversion ratio against the reference unit. Example: 1 Box = 12 Pcs."
-},
+  uom_factor: {
+    key: "factor",
+    label: "Ratio",
+    type: "number",
+    default: 1,
+    message:
+      "Defines the conversion ratio against the reference unit. Example: 1 Box = 12 Pcs."
+  },
 
-uom_rounding: {
-  key: "rounding",
-  label: "Rounding Precision",
-  type: "number",
-  default: 0.01,
-  message:
-    "Controls quantity rounding precision during stock operations and calculations."
-},
+  uom_rounding: {
+    key: "rounding",
+    label: "Rounding Precision",
+    type: "number",
+    default: 0.01,
+    message:
+      "Controls quantity rounding precision during stock operations and calculations."
+  },
 
-uom_active: {
-  key: "active",
-  label: "Active",
-  type: "boolean",
-  default: true,
-  message:
-    "Inactive units will be hidden from selection but existing records remain unchanged."
-},
+  uom_active: {
+    key: "active",
+    label: "Active",
+    type: "boolean",
+    default: true,
+    message:
+      "Inactive units will be hidden from selection but existing records remain unchanged."
+  },
 
-uom_isDefault: {
-  key: "isDefault",
-  label: "Default Data",
-  type: "boolean",
-  default: false
-},
+  uom_isDefault: {
+    key: "isDefault",
+    label: "Default Data",
+    type: "boolean",
+    default: false
+  },
 
 }

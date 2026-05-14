@@ -6,7 +6,7 @@ import { FIELD_RENDERER } from "../../config/renderer/fieldsRenderer";
 
 function FormPage() {
   const layoutContext = useOutletContext();
-  
+
   const route = layoutContext?.route || {};
   const setFormData = layoutContext?.formStore?.setFormData;
 
@@ -95,9 +95,9 @@ function FormPage() {
     const handleClickOutside = () => {
       setOpenTooltip(null)
     }
-  
+
     document.addEventListener("click", handleClickOutside)
-  
+
     return () => {
       document.removeEventListener("click", handleClickOutside)
     }
@@ -188,7 +188,7 @@ function FormPage() {
                 className="tooltipHelp"
                 onClick={(event) => {
                   event.stopPropagation()
-                
+
                   setOpenTooltip((prev) =>
                     prev === field.key ? null : field.key
                   )
@@ -326,7 +326,7 @@ function FormPage() {
             : activeSectionData?.information}
         </div>
 
-        </div>
+      </div>
 
     </div>
   );

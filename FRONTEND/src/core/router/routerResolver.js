@@ -6,9 +6,6 @@ export const resolvePath = (pathname) => {
 
   const [modulePath, viewPath, action, id] = segments
 
-  // ===============================
-  // 🔹 1. VALIDATE MODULE (UI)
-  // ===============================
   const currentMenu = MENU_LIST.find(
     item => item.path === modulePath
   )
@@ -17,18 +14,12 @@ export const resolvePath = (pathname) => {
     return { status: "not_found" }
   }
 
-  // ===============================
-  // 🔹 2. GET MODULE CONFIG (DOMAIN)
-  // ===============================
   const currentModule = MODULE_REGISTRY[modulePath]
 
   if (!currentModule) {
     return { status: "not_found" }
   }
 
-  // ===============================
-  // 🔹 3. HANDLE ROOT MODULE
-  // ===============================
   if (!viewPath) {
     return {
       status: "ok",
@@ -41,9 +32,6 @@ export const resolvePath = (pathname) => {
     }
   }
 
-  // ===============================
-  // 🔹 4. VALIDATE VIEW (from module, NOT menu)
-  // ===============================
   const currentView = currentModule.views?.find(
     v => v.path === viewPath
   )
@@ -52,9 +40,6 @@ export const resolvePath = (pathname) => {
     return { status: "not_found" }
   }
 
-  // ===============================
-  // 🔹 5. HANDLE VIEW ONLY
-  // ===============================
   if (!action) {
     return {
       status: "ok",
@@ -67,9 +52,6 @@ export const resolvePath = (pathname) => {
     }
   }
 
-  // ===============================
-  // 🔹 6. VALIDATE ACTION
-  // ===============================
   const allowedActions = currentView.actions || []
 
   const actionExists = allowedActions.some(
@@ -80,16 +62,10 @@ export const resolvePath = (pathname) => {
     return { status: "not_found" }
   }
 
-  // ===============================
-  // 🔹 7. VALIDATE ID
-  // ===============================
   if (action !== "create" && !id) {
     return { status: "not_found" }
   }
 
-  // ===============================
-  // 🔹 8. SUCCESS
-  // ===============================
   return {
     status: "ok",
     module: modulePath,

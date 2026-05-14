@@ -10,7 +10,7 @@ export const INVENTORY_ACTIONS = {
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
 
-    visible: ( selectedIds) =>
+    visible: (selectedIds) =>
       selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
@@ -26,7 +26,7 @@ export const INVENTORY_ACTIONS = {
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
 
-    visible: ( selectedIds) =>
+    visible: (selectedIds) =>
       selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
@@ -42,7 +42,7 @@ export const INVENTORY_ACTIONS = {
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
 
-    visible: ( selectedIds) =>
+    visible: (selectedIds) =>
       selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {
@@ -58,7 +58,7 @@ export const INVENTORY_ACTIONS = {
     scope: ACTION_SCOPE.BULK,
     requires: { selection: true, min: 1 },
 
-    visible: ( selectedIds) =>
+    visible: (selectedIds) =>
       selectedIds?.length > 0,
 
     handler: ({ selectedIds }) => {

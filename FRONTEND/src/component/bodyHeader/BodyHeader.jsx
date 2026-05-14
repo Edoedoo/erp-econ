@@ -12,7 +12,7 @@ import nextPage from "../../Assets/SVG/nextPage.svg"
 import prevPage from "../../Assets/SVG/prevPage.svg"
 import btnCloseMark from "../../Assets/SVG/btnCloseMarkSearch.svg"
 import settingAction from "../../Assets/SVG/settingAction.svg"
- 
+
 
 
 function BodyHeader({ context }) {
@@ -26,11 +26,11 @@ function BodyHeader({ context }) {
     formStore,
     selectedIds,
     setselectedIds,
-  
+
     viewRows,
     currentIndex,
     setCurrentIndex
-  
+
   } = context || {};
 
   const formData = formStore?.formData;
@@ -38,8 +38,8 @@ function BodyHeader({ context }) {
   const [modulePath, viewPath] = segments;
 
   const isViewLevel = segments.length === 2;
-  
-  const isActionLevel = 
+
+  const isActionLevel =
     route?.action === "view" ||
     route?.action === "edit"
 
@@ -124,7 +124,7 @@ function BodyHeader({ context }) {
         <div className={ACTION_GROUP.TOP_LEFT}>
           <div className="module-name">
             {currentView && (
-              <h4 onClick={() => go({ module: modulePath, view: currentView.path, }) } >
+              <h4 onClick={() => go({ module: modulePath, view: currentView.path, })} >
                 {currentView.name}
               </h4>
             )}
@@ -192,71 +192,71 @@ function BodyHeader({ context }) {
 
       <div className="body-bottom">
 
-      <div className={ACTION_GROUP.BOTTOM_LEFT}>
-        {currentView.actions
-          ?.filter(
-            (action) =>
-              action.group === ACTION_GROUP.BOTTOM_LEFT
-          )
-          ?.filter(
-            (action) =>
-              action.visible?.(uiContext) !== false
-          )
-          .map((action) => (
-            <button
-              key={action.key}
-              onClick={() => action.handler(uiContext)}
-            >
-              {action.label}
-            </button>
-          ))}
-      </div>
+        <div className={ACTION_GROUP.BOTTOM_LEFT}>
+          {currentView.actions
+            ?.filter(
+              (action) =>
+                action.group === ACTION_GROUP.BOTTOM_LEFT
+            )
+            ?.filter(
+              (action) =>
+                action.visible?.(uiContext) !== false
+            )
+            .map((action) => (
+              <button
+                key={action.key}
+                onClick={() => action.handler(uiContext)}
+              >
+                {action.label}
+              </button>
+            ))}
+        </div>
 
-      <div className={ACTION_GROUP.BOTTOM_CENTER}>
-        {selectedIds.length > 0 && (
-          <>
-            <span>
-              {selectedIds.length} selected
-              <img src={btnCloseMark} onClick={() => setselectedIds([])} className={"x-selected"}/>
+        <div className={ACTION_GROUP.BOTTOM_CENTER}>
+          {selectedIds.length > 0 && (
+            <>
+              <span>
+                {selectedIds.length} selected
+                <img src={btnCloseMark} onClick={() => setselectedIds([])} className={"x-selected"} />
 
-            </span>
-            <span className="selectedAction"><img src={settingAction}/>action</span>
-          </>
-        )}
-      </div>
+              </span>
+              <span className="selectedAction"><img src={settingAction} />action</span>
+            </>
+          )}
+        </div>
 
-      <div className={ACTION_GROUP.BOTTOM_RIGHT}>
+        <div className={ACTION_GROUP.BOTTOM_RIGHT}>
 
-        {isViewLevel && (
-          <>
-            <span
-              className={viewType === "list" ? "active" : ""}
-              onClick={handleListView}
-            >
-              <img src={btnList} />
-            </span>
+          {isViewLevel && (
+            <>
+              <span
+                className={viewType === "list" ? "active" : ""}
+                onClick={handleListView}
+              >
+                <img src={btnList} />
+              </span>
 
-            <span
-              className={viewType === "kanban" ? "active" : ""}
-              onClick={handleKanbanView}
-            >
-              <img src={btnKanban} />
-            </span>
-          </>
-        )}
+              <span
+                className={viewType === "kanban" ? "active" : ""}
+                onClick={handleKanbanView}
+              >
+                <img src={btnKanban} />
+              </span>
+            </>
+          )}
 
-        {isActionLevel && (
-          <>
-            <span>
-              {currentIndex >= 0
-                ? `${currentIndex + 1} / ${viewRows?.length || 0}`
-                : "- / -"}
-            </span>
+          {isActionLevel && (
+            <>
+              <span>
+                {currentIndex >= 0
+                  ? `${currentIndex + 1} / ${viewRows?.length || 0}`
+                  : "- / -"}
+              </span>
 
-            <img src={prevPage} onClick={handlePrev} />
-            <img src={nextPage} onClick={handleNext} />
-          </>
-        )}
+              <img src={prevPage} onClick={handlePrev} />
+              <img src={nextPage} onClick={handleNext} />
+            </>
+          )}
 
         </div>
 

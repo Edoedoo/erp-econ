@@ -1,5 +1,5 @@
 
-import { DEFAULT_UOM_CATEGORY } from "../../config/defaultData/defaultCategoryUom";
+import { UOM_CATEGORIES } from "../shared/uom/uomCategories";
 
 export class UoMCategoryUnionEngine {
   constructor(dbCategories = []) {
@@ -30,7 +30,7 @@ export class UoMCategoryUnionEngine {
   }
 
   getDefaultCategories() {
-    return DEFAULT_UOM_CATEGORY.map(item =>
+    return UOM_CATEGORIES.map(item =>
       this.normalize(item, "default")
     );
   }

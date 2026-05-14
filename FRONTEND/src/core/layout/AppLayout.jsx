@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 import Header from "../../component/header/Header";
 
-import { fetchUomFromDatabase } from "../../core/repository/uomRepository";
-import { fetchUomCategoriesFromDatabase } from "../repository/categoryUomRepository"
+import { fetchUomFromDatabase } from "../repositories/uomRepository";
+import { fetchUomCategoriesFromDatabase } from "../repositories/categoryUomRepository"
 
-import { UoMUnionEngine } from "../engine/uomUnionEngine"
-import { UoMCategoryUnionEngine } from "../engine/categoryUomUnionEngine"
+import { UoMUnionEngine } from "../engines/uomUnionEngine"
+import { UoMCategoryUnionEngine } from "../engines/categoryUomUnionEngine"
 
 import { setGlobalUom } from "../shared/uomStore";
 import { setGlobalUomCategories } from "../shared/uomCategoryStore"
@@ -15,9 +15,10 @@ import { setGlobalUomCategories } from "../shared/uomCategoryStore"
 import "./layout.css";
 import Loading from "../../component/loading/loading";
 
+
+
 function AppLayout() {
   const [ready, setReady] = useState(false);
-
   useEffect(() => {
     const initSystem = async () => {
       const dbUom =
@@ -31,7 +32,6 @@ function AppLayout() {
 
       const mergedUom =
         uomEngine.getAllUom();
-
       setGlobalUom(mergedUom);
 
       const categoryEngine =
@@ -50,16 +50,18 @@ function AppLayout() {
     };
 
     initSystem();
+
+
   }, []);
 
   if (!ready) {
-    return <div 
+    return <div
       style={{
-        display: "flex", 
-        height: "100%", 
+        display: "flex",
+        height: "100%",
         justifyContent: "center"
       }} >
-        <Loading message={"please wait"}/>
+      <Loading message={"please wait"} />
     </div>;
   }
 

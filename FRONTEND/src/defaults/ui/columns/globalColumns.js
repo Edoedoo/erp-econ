@@ -1,6 +1,4 @@
-
-
-export const COLUMN_REGISTRY = {
+export const GLOBAL_COLUMNS = {
   
     id: {
       key: "id",
