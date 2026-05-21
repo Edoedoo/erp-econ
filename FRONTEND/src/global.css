@@ -1,94 +1,98 @@
 /* RESET DASAR */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  :root {
-    /* =========================
+:root {
+  /* =========================
        PRIMARY (Deep Blue - ERP Style)
     ========================= */
-    --color-primary: #1E3A8A;
-    --color-primary-hover: #1A3378;
-    --color-primary-active: #162B63;
-    --color-primary-light: #3B82F6;
-    --color-primary-soft: #EFF6FF;
-  
-    /* =========================
+  --color-primary: #1E3A8A;
+  --color-primary-hover: #1A3378;
+  --color-primary-active: #162B63;
+  --color-primary-light: #3B82F6;
+  --color-primary-soft: #EFF6FF;
+
+  /* =========================
        ACCENT (Action / CTA)
     ========================= */
-    --color-accent: #14B8A6;
-    --color-accent-hover: #0D9488;
-    --color-accent-soft: #ECFEFF;
-  
-    /* =========================
+  --color-accent: #14B8A6;
+  --color-accent-hover: #0D9488;
+  --color-accent-soft: #ECFEFF;
+
+  /* =========================
        BACKGROUND
     ========================= */
-    --color-bg-main: #F8FAFC;
-    --color-bg-card: #FFFFFF;
-    --color-bg-hover: #F1F5F9;
-    --color-bg-menu: #EEF2F7;
-  
-    /* =========================
+  --color-bg-main: #F8FAFC;
+  --color-bg-card: #FFFFFF;
+  --color-bg-hover: #F1F5F9;
+  --color-bg-menu: #EEF2F7;
+
+  /* =========================
        TEXT
     ========================= */
-    --color-text-main: #0F172A;
-    --color-text-secondary: #64748B;
-    --color-text-light: #FFFFFF;
-  
-    /* =========================
+  --color-text-main: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-text-light: #FFFFFF;
+
+  /* =========================
        BORDER
     ========================= */
-    --color-border: #E2E8F0;
-  
-    /* =========================
+  --color-border: #E2E8F0;
+
+  /* =========================
        STATUS COLORS
     ========================= */
-    --color-success: #22C55E;
-    --color-warning: #F59E0B;
-    --color-danger: #EF4444;
-    --color-info: #3B82F6;
-    --color-favorite: #facc15
-  
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #3B82F6;
+  --color-favorite: #facc15
+}
 
-  }
-  /* ROOT */
-  html, body, #root {
-    height: 100%;
-    font-size: 16px;
-  }
-  
-  
-  
-  
-  /* BODY */
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--color-bg-main);
-    color: var(--color-text-main);
-    font-size: clamp(14px, 1.1vw, 16px);
-  }
-  
-  /* LINK */
-  a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    color: var(--color-text-light);
-  }
-  
-  /* BUTTON */
-  button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    background: none;
-  }
-  
-  /* INPUT */
-  input, select, textarea {
-    font-family: inherit;
-    outline: none;
-  }
+/* ROOT */
+html,
+body,
+#root {
+  height: 100%;
+  font-size: 16px;
+}
+
+
+
+
+/* BODY */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-size: clamp(14px, 1.1vw, 16px);
+  cursor: default;
+}
+
+/* LINK */
+a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-light);
+}
+
+/* BUTTON */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* INPUT */
+input,
+select,
+textarea {
+  font-family: inherit;
+  outline: none;
+}

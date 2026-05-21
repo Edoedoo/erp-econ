@@ -1,32 +1,37 @@
-// import SidebarSection from "@/sections/sidebar/SidebarSection"
-// import HeaderSection from "@/sections/header/HeaderSection"
-// import NavbarSection from "@/sections/navbar/NavbarSection"
-// import WorkspaceSection from "@/sections/workspace/WorkspaceSection"
 
-export default function RootLayout() {
+
+import HeaderSection from "./HeaderSection/HeaderSection"
+import NavbarSection from "./NavbarSection/NavbarSection"
+import WorkspaceSection from "./WorkspaceSection/WorkspaceSection"
+
+export default function RootLayout({ module }) {
+  const ui =
+    module?.payload?.ui || {}
   return (
-    <div className="root-layout">
+    <>
+      {
+        ui.header?.active && (
+          <HeaderSection
+            dataUI={ui.header}
+          />
+        )
+      }
 
-      <aside className="layout-sidebar">
-        {/* <SidebarSection /> */}
-      </aside>
+      {
+        ui.navbar?.active && (
+          <NavbarSection
+            dataUI={ui.navbar}
+          />
+        )
+      }
 
-      <div className="layout-main">
-
-        <header className="layout-header">
-          {/* <HeaderSection /> */}
-        </header>
-
-        <nav className="layout-navbar">
-          {/* <NavbarSection /> */}
-        </nav>
-
-        <main className="layout-workspace">
-          {/* <WorkspaceSection /> */}
-        </main>
-
-      </div>
-
-    </div>
+      {
+        ui.workspace?.active && (
+          <WorkspaceSection
+            dataUI={ui.workspace}
+          />
+        )
+      }
+    </>
   )
 }

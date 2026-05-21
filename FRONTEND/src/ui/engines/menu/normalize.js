@@ -1,56 +1,54 @@
-const normalizeChildren = (children) => {
-    if (!Array.isArray(children)) {
-      return []
+
+export const normalizeMenu = (source = []) => {
+    const normalized = {
+        id: "",
+        route: "/",
+
+        sections: {
+            header: {
+                left: [],
+                center: [],
+                right: [],
+            },
+
+            navbar: false,
+
+            workspace: {},
+        },
+
+        layouts: {},
+
+        overlays: {},
     }
-  
-    return children.filter(Boolean)
-}
-  
-export const normalizeMenu = ( menus = [] ) => {
-    return menus.map((menu, index) => {
-        
-        return {
-        key: menu.key || `menu-${index}`,
-        label: menu.label || "Unnamed Menu",
-        module: menu.module || null,
-        path: menu.path || "/",
-        icon: menu.icon || "default",
-        order:
-            typeof menu.order === "number"
-            ? menu.order
-            : index,
-        active:
-            typeof menu.active === "boolean"
-            ? menu.active
-            : true,
-        visible:
-            typeof menu.visible === "boolean"
-            ? menu.visible
-            : true,
-        favorite:
-            typeof menu.favorite === "boolean"
-            ? menu.favorite
-            : false,
-        variant:
-            menu.variant || "default",
-        size:
-            menu.size || "medium",
-        category:
-            menu.category || "main",
-        badge:
-            menu.badge || null,
-        description:
-            menu.description || "",
-        tags:
-            Array.isArray(menu.tags)
-            ? menu.tags
-            : [],
-        permissions:
-            Array.isArray(menu.permissions)
-            ? menu.permissions
-            : [],
-        children:
-            normalizeChildren(menu.children)
+
+    for (const source of sources) {
+
+        normalized.id =
+            source.id || normalized.id
+
+        normalized.route =
+            source.route || normalized.route
+
+        normalized.sections = {
+            ...normalized.sections,
+            ...source.sections,
+
+            header: {
+                ...normalized.sections.header,
+                ...source.sections?.header,
+            },
         }
-    })
+
+        normalized.layouts = {
+            ...normalized.layouts,
+            ...source.layouts,
+        }
+
+        normalized.overlays = {
+            ...normalized.overlays,
+            ...source.overlays,
+        }
+    }
+
+    return normalized
 }

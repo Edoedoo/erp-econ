@@ -1,19 +1,18 @@
 /* MAIN */
 .main-menu {
-    background: var(--color-bg-menu);
-    height: 100%;
+  background: var(--color-bg-menu);
+  height: 100%;
 }
-/* WRAPPER GRID */
+
 .menu-grid {
-    padding-top: 100px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 25px;
-    max-width: 800px;
-    margin: auto; 
-  }
-  
-  /* CARD */
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 25px;
+  max-width: 800px;
+  margin: auto;
+}
+
 .menu-card {
   display: flex;
   flex-direction: column;
@@ -32,22 +31,17 @@
   font-size: 14px;
 }
 
-/* ICON */
 .menu-card img {
-    width: 55px;
-    margin-bottom: 10px;
+  width: 55px;
+  margin-bottom: 10px;
 }
 
-/* TEXT */
-
-/* HOVER EFFECT */
 .menu-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    opacity: 0.95;
-  }
-  
-  /* ACTIVE CLICK */
-  .menu-card:active {
-    transform: scale(0.97);
-  }
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  opacity: 0.95;
+}
+
+.menu-card:active {
+  transform: scale(0.97);
+}

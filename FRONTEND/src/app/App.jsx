@@ -1,31 +1,19 @@
-import { useState, useEffect } from "react"
 
+import module from "../harbor/init"
 import RootLayout from "./RootLayout/RootLayout"
-import Loading from "../component/loading/loading"
-
-import {initMenu} from "../ui/init/menu/initMenu"
-
+import NotFound from "../component/404page.jsx/404page"
 
 function App() {
-    const [ready, setReady] = useState(false)
-
-    useEffect(() => {
-        const bootstrap = async () => {
-            const result =
-              await initMenu()
-              setReady(true)
-        
-            console.log(result)
-          }
-        
-          bootstrap()
-    }, [])
-
-    if (!ready) {
-        return <Loading />
-    }
-
-    return <RootLayout />
+  return (
+    <>
+      {module.activeModule === undefined || "" || null
+        ? <NotFound pathname={module.pathname} />
+        : <RootLayout
+          module={module.activeModule}
+        />
+      }
+    </>
+  )
 }
 
-  export default App
+export default App

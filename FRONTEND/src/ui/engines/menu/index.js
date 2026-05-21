@@ -1,16 +1,7 @@
-import { DEFAULT_MENU } from "../../registry/menus/menuDefaults"
 
-import { mergeMenu } from "./merge"
+import { uiMenuRegistry } from "../../registry/menu/menu"
 import { normalizeMenu } from "./normalize"
 
-export const menuEngine = ( customMenu = [] ) => {
-  const mergedMenu = mergeMenu(
-    DEFAULT_MENU,
-    customMenu
-  )
-
-  const normalizedMenu =
-    normalizeMenu(mergedMenu)
-
-  return normalizedMenu
+export const menuEngine = () => {
+  return normalizeMenu(uiMenuRegistry)
 }

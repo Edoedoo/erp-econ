@@ -1,48 +1,49 @@
 .nf-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: var(--color-text-secondary);
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-  }
-  
-  .nf-robot {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  /* TEXT */
-  .nf-title {
-    font-size: 64px;
-    font-weight: 700;
-    color: var(--color-text-main);
-    margin: 0;
-  }
-  
-  .nf-sub {
-    font-size: 18px;
-    color: var(--color-text-main);
-    margin: 8px 0;
-  }
-  
-  /* BUTTON */
-  .nf-actions {
-    display: flex;
-    gap: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: var(--color-bg-menu);
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
 
-  .nf-actions button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-    background: var(--color-accent);
-    color: var(--color-text-light);
-    padding: 5px 7px;
-    border-radius: 2px;
-  }
-  
-  
+.nf-robot {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nf-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.nf-sub {
+  font-size: 16px;
+  color: var(--color-text-main);
+  margin: 8px 0;
+}
+
+.nf-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nf-actions button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  padding: 5px 7px;
+  border-radius: 2px;
+}
+
+.pathname {
+  color: var(--color-primary);
+}

@@ -1,0 +1,124 @@
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 25px;
+    max-width: 800px;
+    margin: auto;
+    padding: 100px 20px;
+}
+
+.card-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 9px var(--color-border);
+    border-radius: 2px;
+    font-size: 14px;
+    position: relative;
+    background: var(--color-bg-card);
+}
+
+.card-app:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    /* opacity: 0.95; */
+}
+
+.card-app .option {
+    position: absolute;
+    width: 20px;
+    display: flex;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.option:hover {
+    transform: scale(1.2);
+}
+
+.card-app .option-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 280%;
+    min-height: 300px;
+    background: var(--color-bg-card);
+    z-index: 10000;
+    left: 90%;
+    top: 18%;
+    border-radius: 0 5px 5px 5px;
+    border: 2.5px solid var(--color-border);
+    padding: 5px;
+    font-size: 12px;
+    gap: 10px;
+}
+
+.option-dropdown-shortcut,
+.option-dropdown-apperance {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.option-dropdown-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    cursor: pointer;
+    padding: 1.5px 0;
+}
+
+.option-dropdown-row:hover {
+    background: var(--color-bg-hover);
+}
+
+.documentationLink {
+    color: var(--color-info);
+    position: absolute;
+    display: flex;
+    flex-wrap: nowrap;
+    bottom: 5px;
+    cursor: default;
+    width: 95%;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 0;
+    border-top: 2px solid var(--color-border);
+}
+
+.documentationLink img {
+    height: 16px;
+}
+
+.documentationLink p:hover {
+    background: none;
+    color: var(--color-primary);
+}
+
+.card-identity {
+    position: relative;
+}
+
+.card-identity img {
+    width: 55px;
+}
+
+.card-identity span {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    background: var(--color-danger);
+    border-radius: 100%;
+    color: var(--color-text-light);
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

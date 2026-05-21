@@ -1,0 +1,67 @@
+.header-section {
+    display: flex;
+    width: 100%;
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 0 10px;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    position: relative;
+}
+
+.header-center {
+    display: flex;
+    flex: 2;
+    position: relative;
+    justify-content: start;
+}
+
+.header-right {
+    display: flex;
+    position: relative;
+    justify-content: end;
+    font-size: 14px;
+    gap: 5px;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.message-header:hover,
+.profile-header:hover {
+    background: var(--color-primary-active);
+    border-radius: 5px;
+}
+
+.header-right img {
+    height: 24px;
+}
+
+
+.message-header {
+    display: flex;
+    position: relative;
+}
+
+.message-header .badge-message-header {
+    position: absolute;
+    background: var(--color-danger);
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    font-size: 9px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    top: -3px;
+    left: -3px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
