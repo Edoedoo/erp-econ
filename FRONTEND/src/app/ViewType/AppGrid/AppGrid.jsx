@@ -7,7 +7,6 @@ function AppGrid(workspace) {
     const [dropdownView, setDropdownView] = useState(null)
 
     const handleDropdown = (key) => {
-
         setDropdownView(prev =>
             prev === key ? null : key
         )
@@ -18,9 +17,9 @@ function AppGrid(workspace) {
         <div className="app-grid" >
             {workspace.data.map(item => {
                 return (
-                    <div key={item.key} className="card-app">
+                    <div key={item.key} className="card-app" onClick={() => item.action(item.path)}>
 
-                        <img src={optionSetting} className="option" onClick={() => handleDropdown(item.key)} />
+                        <img src={optionSetting} className="option" onClick={(e) => { e.stopPropagation(), handleDropdown(item.key) }} />
                         {dropdownView === item.key && (
                             <span className="option-dropdown" key={item.key}>
                                 <div className="option-dropdown-shortcut">
@@ -29,6 +28,7 @@ function AppGrid(workspace) {
                                             <div key={s.key} className="option-dropdown-row">
                                                 <span></span>
                                                 <span>{s.label}</span>
+                                                <span className="last-dropdown-row"></span>
                                             </div>
                                         )
                                     })}
@@ -39,15 +39,17 @@ function AppGrid(workspace) {
                                             <div key={a.key} className="option-dropdown-row">
                                                 <span>✓</span>
                                                 <span>{a.label}</span>
+                                                <span className="last-dropdown-row"></span>
                                             </div>
                                         )
                                     })}
                                 </div>
                                 <div className="documentationLink">
                                     {item.dropdown?.documentation.link && (
-                                        <div className="option-dropdown-row">
+                                        <div className="documentation-dropdown-row">
+                                            <span></span>
                                             <span>{item.dropdown?.documentation?.label}</span>
-                                            <img src={openLink} alt="" />
+                                            <span><img src={openLink} alt="" /></span>
                                         </div>
                                     )}
                                 </div>
@@ -56,7 +58,7 @@ function AppGrid(workspace) {
 
                         <span className="card-identity">
                             <img src={item.icon} alt="" />
-                            {item.badge && (
+                            {item.showBadge && item.badge > 0 && (
                                 <span>{item.badge}</span>
                             )}
                         </span>

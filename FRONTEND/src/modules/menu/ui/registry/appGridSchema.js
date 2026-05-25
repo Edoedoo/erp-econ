@@ -1,22 +1,38 @@
 
-export const menusSchema = {
+export const appGridSchema = {
     key: "",
     label: "",
     path: "/",
     icon: null,
     active: false,
     favorite: false,
-    badge: null,
+    badge: 0,
     showBadge: false,
     description: "",
 
     dropdown: {
         visible: false,
+        shortcut: [
+            {
+                key: "",
+                label: "No Shortcut",
+                path: "/",
+                active: true,
+            },
+        ],
 
-        shortcut: [],
+        appearance: [
+            {
+                key: "",
+                label: "No Appearance",
+                path: "/",
+                active: true,
+            },
+        ],
 
-        appearance: [],
-
-        documentation: {}
+        documentation: {
+            label: "No Link",
+            link: "/"
+        }
     }
 }

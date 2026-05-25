@@ -1,6 +1,4 @@
-import { harborRegistry } from "../registry"
-import createModule from "../engine/createModule"
+import { engineHarbor } from "../engine"
 
-const module =
-    createModule(harborRegistry)
-export default module
+export const initHarbor =
+    engineHarbor()

@@ -7,6 +7,9 @@ import WorkspaceSection from "./WorkspaceSection/WorkspaceSection"
 export default function RootLayout({ module }) {
   const ui =
     module?.payload?.ui || {}
+  const core =
+    module?.payload?.core || {}
+
   return (
     <>
       {

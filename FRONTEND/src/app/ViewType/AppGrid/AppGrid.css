@@ -1,6 +1,6 @@
 .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 25px;
     max-width: 800px;
     margin: auto;
@@ -23,7 +23,6 @@
 
 .card-app:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-    /* opacity: 0.95; */
 }
 
 .card-app .option {
@@ -33,7 +32,7 @@
     right: 0;
     top: 0;
     cursor: pointer;
-    z-index: 100;
+    z-index: 10;
 }
 
 .option:hover {
@@ -47,14 +46,14 @@
     width: 280%;
     min-height: 300px;
     background: var(--color-bg-card);
-    z-index: 10000;
+    z-index: 20;
     left: 90%;
     top: 18%;
     border-radius: 0 5px 5px 5px;
     border: 2.5px solid var(--color-border);
-    padding: 5px;
     font-size: 12px;
     gap: 10px;
+    padding: 5px 0;
 }
 
 .option-dropdown-shortcut,
@@ -66,37 +65,49 @@
 }
 
 .option-dropdown-row {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 15px auto auto;
     cursor: pointer;
-    padding: 1.5px 0;
+    padding: 1.5px 5px;
 }
 
 .option-dropdown-row:hover {
     background: var(--color-bg-hover);
 }
 
-.documentationLink {
-    color: var(--color-info);
-    position: absolute;
-    display: flex;
-    flex-wrap: nowrap;
-    bottom: 5px;
-    cursor: default;
-    width: 95%;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 0;
-    border-top: 2px solid var(--color-border);
+.last-dropdown-row {
+    justify-content: end;
+    align-items: end;
 }
 
-.documentationLink img {
+.documentationLink {
+    color: var(--color-info);
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    flex: 1;
+    justify-content: end;
+}
+
+.documentation-dropdown-row span {
+    display: flex;
+    align-items: center;
+}
+
+.documentation-dropdown-row img {
     height: 16px;
 }
 
-.documentationLink p:hover {
-    background: none;
+.documentation-dropdown-row {
+    display: flex;
+    gap: 5px;
+    border-top: 2px solid var(--color-border);
+    align-items: center;
+    padding: 1.5px 5px;
+}
+
+.documentation-dropdown-row:hover {
+    background: var(--color-bg-hover);
     color: var(--color-primary);
 }
 

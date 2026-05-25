@@ -1,10 +1,15 @@
-import iconInventory from "../../../../Assets/SVG/btnInventory.svg"
+import iconInventory from "../../../../Assets/SVG/menuGrid/btnInventory.svg"
 
-export const menus = [
+import { engineRoute } from "../../../../actions/route/actionRouteGlobal"
+
+export const appGridDefault = [
     {
         key: "inventory",
         label: "Inventory",
         path: "/inventory",
+        action: (path) => {
+            engineRoute({ path: path })
+        },
         icon: iconInventory,
         active: true,
         favorite: false,
@@ -13,8 +18,6 @@ export const menus = [
         description: "Manage products, stock, and warehouse operations",
 
         dropdown: {
-            visible: false,
-
             shortcut: [
                 {
                     key: "products",

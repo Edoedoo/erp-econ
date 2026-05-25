@@ -1,14 +1,17 @@
-import { mergeAppGrid } from "../engine/mergeAppGrid"
-export const ui = {
+import { engineWorkspace } from "../engine/workspace"
+
+export const initUi = {
     header: {
         active: true,
-        left: [],
-        center: [],
-        right: ["administrator"],
+        left: [],                       //next valuenya dari engine
+        center: [],                     //next valuenya dari engine
+        right: ["edo.edo1212"],         //next valuenya dari engine
     },
     workspace: {
         active: true,
-        viewType: "appgrid",
-        data: mergeAppGrid()
+        viewType: "appgrid",            //next valuenya lewat engine
+        data: engineWorkspace()
     }
 }
+
+console.log(initUi)
