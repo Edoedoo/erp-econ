@@ -1,4 +1,6 @@
 import { engineWorkspace } from "../engine/workspace"
+import { handleCloseDropdownOutside, handleShowDropdown } from "../../../../actions/dropdown/dropdownEngine"
+import { params } from "../../../../helper/paramsQuery"
 
 export const initUi = {
     header: {
@@ -9,9 +11,12 @@ export const initUi = {
     },
     workspace: {
         active: true,
-        viewType: "appgrid",            //next valuenya lewat engine
-        data: engineWorkspace()
+        actions: {
+            handleShowDropdown: handleShowDropdown,
+            closeDropdown: handleCloseDropdownOutside
+        },
+        view: params.view,
+        viewDefault: "appgrid",
+        data: engineWorkspace
     }
 }
-
-console.log(initUi)

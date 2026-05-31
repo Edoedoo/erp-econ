@@ -1,0 +1,9 @@
+.workspace-section {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.workspace-section::-webkit-scrollbar {
+    display: none;
+}

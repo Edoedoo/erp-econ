@@ -1,5 +1,6 @@
 export const schemaHarborRegistry = {
     id: "",
     payload: {},
-    route: "/"
+    route: "/",
+    view: null,
 }

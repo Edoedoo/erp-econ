@@ -1,17 +1,21 @@
 import { mergeHarbor } from "./mergeHarbor"
+import { params } from "../../helper/paramsQuery"
 
 export const resolveHarbor = () => {
-
     const pathname =
         window.location.pathname
 
-    const merge = mergeHarbor()
-        .find(
-            item => item.route === pathname
-        )
+    const view = params.view()
 
+    const merge = mergeHarbor()
+        .find(item =>
+            !item.view
+                ? item.route === pathname
+                : item.route === pathname && item.view === view
+        )
     return {
         pathname,
-        activeModule: merge
+        view,
+        activeModule: merge,
     }
 }

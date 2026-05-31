@@ -1,47 +1,36 @@
 
-export const engineRoute = ({
-    path = "",
-    params = {},
-    query = {},
-    state = {},
-    replace = false,
-}) => {
+export const engineRoute = ({ path = "", params = {}, query = {}, state = {}, replace = false, }) => {
 
-    const execute = () => {
+    let finalPath = path
 
-        let finalPath = path
+    Object.entries(params).forEach(([key, value]) => {
+        finalPath = finalPath.replace(
+            `:${key}`,
+            value
+        )
+    })
 
-        Object.entries(params).forEach(([key, value]) => {
-            finalPath = finalPath.replace(
-                `:${key}`,
-                value
-            )
-        })
+    const searchParams = new URLSearchParams(query)
+    const queryString = searchParams.toString()
 
-        const searchParams = new URLSearchParams(query)
-        const queryString = searchParams.toString()
+    if (queryString) {
+        finalPath += `?${queryString}`
+    }
 
-        if (queryString) {
-            finalPath += `?${queryString}`
-        }
-
-        if (replace) {
-            window.history.replaceState(
-                state,
-                "",
-                finalPath
-            )
-        } else {
-            window.history.pushState(
-                state,
-                "",
-                finalPath
-            )
-        }
-
-        window.dispatchEvent(
-            new PopStateEvent("popstate")
+    if (replace) {
+        window.history.replaceState(
+            state,
+            "",
+            finalPath
+        )
+    } else {
+        window.history.pushState(
+            state,
+            "",
+            finalPath
         )
     }
-    return execute()
+    window.dispatchEvent(
+        new PopStateEvent("popstate")
+    )
 }

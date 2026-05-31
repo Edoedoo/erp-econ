@@ -1,13 +1,16 @@
 import AppGrid from "../../ViewType/AppGrid/AppGrid"
+import "../WorkspaceSection/WorkspaceSection.css"
 
-function WorkspaceSection({ dataUI }) {
+function WorkspaceSection({ dataUi }) {
     const registry = {
         appgrid: AppGrid
     }
-
-    const Component = registry[dataUI.viewType]
+    const Component =
+        registry[dataUi.viewDefault]
     return (
-        <Component {...dataUI} />
+        <div className="workspace-section">
+            <Component {...dataUi} />
+        </div>
     )
 }
 

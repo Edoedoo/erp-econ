@@ -15,7 +15,7 @@ export default function RootLayout({ module }) {
       {
         ui.header?.active && (
           <HeaderSection
-            dataUI={ui.header}
+            dataUi={ui.header}
           />
         )
       }
@@ -23,7 +23,7 @@ export default function RootLayout({ module }) {
       {
         ui.navbar?.active && (
           <NavbarSection
-            dataUI={ui.navbar}
+            dataUi={ui.navbar}
           />
         )
       }
@@ -31,10 +31,12 @@ export default function RootLayout({ module }) {
       {
         ui.workspace?.active && (
           <WorkspaceSection
-            dataUI={ui.workspace}
+            dataUi={ui.workspace}
           />
         )
       }
+
+
     </>
   )
 }
