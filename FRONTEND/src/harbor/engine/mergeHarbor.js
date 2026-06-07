@@ -9,7 +9,6 @@ export const mergeHarbor = () => {
                 ...schemaHarborRegistry,
                 ...map.get(item.id),
                 ...item
-
             })
         })
     return Array.from(map.values())

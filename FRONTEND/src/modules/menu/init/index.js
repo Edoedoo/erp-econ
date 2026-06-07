@@ -3,5 +3,7 @@ import { menuRegistry } from "../registry/menuRegistry"
 export const initMenuModule = {
     id: "menu",
     route: "/",
+    vtDefault: "appgrid",
+    view: "",
     payload: menuRegistry,
 }

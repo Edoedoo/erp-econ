@@ -3,12 +3,20 @@ import profile from "../../../Assets/SVG/profile.svg"
 import chat from "../../../Assets/SVG/notificationChat.svg"
 import "./HeaderSection.css"
 
-function HeaderSection({ dataUI }) {
+function HeaderSection({ dataUI, headerLeft, headerCenter, headerRight }) {
     return (
         <div className="header-section">
-            <div className="header-left" >
-                <h3>{dataUI?.left?.map(item => item)}</h3>
-            </div>
+            {headerLeft && (
+                <div className="header-left" >
+                    {headerLeft.map(item => {
+                        return (
+                            <div key={item.key}>
+                                <h3>{item.key}</h3>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
 
             <div className="header-center" >
                 <span>{dataUI?.center?.map(item => item)}</span>

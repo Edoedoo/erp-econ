@@ -1,43 +1,43 @@
 import { mergeAppGrid } from "./mergeAppGrid"
 import { engineRoute } from "../../../../../actions/route/actionRouteGlobal"
-import { handleCloseDropdownOutside } from "../../../../../actions/dropdown/dropdownEngine"
 import { handleShowDropdown } from "../../../../../actions/dropdown/dropdownEngine"
 import { params } from "../../../../../helper/paramsQuery"
 
 
-export const engineWorkspace = () => {
-    return mergeAppGrid().map(item => ({
+export const engineWorkspace = mergeAppGrid().map(
+    item => ({
         ...item,
-        action: (path) => {
-            engineRoute({ path: path })
+        action: {
+            ...item?.action,
+            goPath: (path) => {
+                engineRoute({ path: path })
+            },
+            actDropdown: handleShowDropdown,
         },
-        handleShowDropdown: handleShowDropdown,
-        handleCloseDropdownOutside: handleCloseDropdownOutside,
-        option: "Customize and Shortcuts",
-
+        content: {
+            ...item?.content,
+            hoverLabelOption: "Customize and Shortcuts",
+        },
         dropdown: {
+            ...item.dropdown,
             shortcut: item.dropdown.shortcut.map(s => ({
                 ...s,
-                action: (path) => {
+                goPath: (path, view, vt) => {
                     engineRoute({ path: path })
+                    params.view(view)
+                    params.vt(vt)
                 },
-                view: (key) => {
-                    params.view(key)
-                },
-
             })),
             appearance: item.dropdown.appearance.map(a => ({
                 ...a,
             })),
             documentation: {
                 ...item.dropdown.documentation,
-                action: (path) => {
+                goPath: (path, module) => {
                     engineRoute({ path: path })
-                },
-                module: (value) => {
-                    params.module(value)
+                    params.module(module)
                 },
             }
         }
-    }))
-}
+    })
+)

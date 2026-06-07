@@ -10,13 +10,6 @@ export const mergeAppGrid = () => {
                 ...appGridSchema,
                 ...map.get(item.key),
                 ...item,
-
-                dropdown: {
-                    ...appGridSchema.dropdown,
-                    ...map.get(item.key)?.dropdown,
-                    ...item.dropdown
-                }
-
             })
         })
     return Array.from(map.values())

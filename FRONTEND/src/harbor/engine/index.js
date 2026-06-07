@@ -1,19 +1,16 @@
 import { resolveHarbor } from "./resolveHarbor"
 
 const listeners = new Set()
-let harborState = resolveHarbor()
 
 window.addEventListener("popstate", () => {
-    harborState = resolveHarbor()
-    listeners.forEach(listener => listener(harborState))
-}
-)
+    listeners.forEach(listener => listener())
+})
 
 export const engineHarbor = () => {
     return {
 
         getState() {
-            return harborState
+            return resolveHarbor()
         },
 
         subscribe(listener) {

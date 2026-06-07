@@ -4,18 +4,12 @@ const engine = (key, value) => {
         new URLSearchParams(window.location.search)
 
     if (value === undefined) {
-
-        const result =
-            query.get(key)
-
-        return result
-            ? atob(result)
-            : null
+        return query.get(key)
     }
 
     query.set(
         key,
-        btoa(value)
+        String(value)
     )
 
     const url =
@@ -27,9 +21,11 @@ const engine = (key, value) => {
         url
     )
 
-    return atob(
-        query.get(key)
+    window.dispatchEvent(
+        new PopStateEvent("popstate")
     )
+
+    return value
 
 }
 

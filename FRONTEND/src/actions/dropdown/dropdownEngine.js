@@ -5,7 +5,6 @@ export const handleShowDropdown = (key, setShowDropdown) => {
 }
 
 export const handleCloseDropdownOutside = (e, wrapperRef, setShowDropdown) => {
-
     if (
         wrapperRef.current &&
         !wrapperRef.current.contains(e.target)
