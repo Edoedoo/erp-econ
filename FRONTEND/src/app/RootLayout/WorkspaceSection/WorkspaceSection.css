@@ -1,10 +1,10 @@
 .workspace-section {
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
 }
 
 .workspace-section::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

@@ -73,6 +73,7 @@ body {
   max-width: 2400px;
   height: max-content;
   min-height: 100%;
+  padding-top: 35px;
 }
 
 /* LINK */

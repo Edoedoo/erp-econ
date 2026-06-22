@@ -28,7 +28,11 @@ function AppGrid({ identity, action, dropdown, content, realtime, showDropdown, 
                                                 {i.shortcut.map(s => {
                                                     return (
                                                         <div key={s.key} className="option-dropdown-row"
-                                                            onClick={(e) => { e.stopPropagation(), s.goPath(s.path, s.key, s.vtDefault) }}>
+                                                            onClick={(e) => { 
+                                                                e.stopPropagation(), 
+                                                                s.goPath(s.path, s.key, s.vtDefault), 
+                                                                actDropdown(item.key, setShowDropdown) 
+                                                            }}>
                                                             <span></span>
                                                             <span>{s.label}</span>
                                                             <span className="last-dropdown-row">{s.shortkey}</span>
@@ -58,7 +62,8 @@ function AppGrid({ identity, action, dropdown, content, realtime, showDropdown, 
                                                             e.stopPropagation(),
                                                                 i.documentation.goPath(
                                                                     i.documentation.path,
-                                                                    i.documentation.keyModule
+                                                                    i.documentation.keyModule,
+                                                                    actDropdown(item.key, setShowDropdown)
                                                                 )
                                                         }}>
                                                         <span></span>
@@ -93,16 +98,25 @@ function AppGrid({ identity, action, dropdown, content, realtime, showDropdown, 
                                     )
                                 })
                             )}
-                            <h4 >{content.filter(i => i.key === item.key).map(i => i.label)}</h4>
+                            <h4 >{content.filter(i => 
+                                i.key === item.key)
+                                .map(i => 
+                                i.label)}
+                                </h4>
                         </span>
-
+                        
                         {!showDropdown && (
                             <>
                                 {dropdown.filter(i => i.key === item.key).map(d =>
                                     d.appearance.map(a => {
                                         return (
                                             <span key={a.key} className="description-card">
-                                                {a.key === "showDescription" && a.checked && (content.filter(i => i.key === item.key).map(i => i.description))}
+                                                {a.key === "showDescription" && 
+                                                a.checked && 
+                                                (content.filter(i => 
+                                                i.key === item.key)
+                                                .map(i => 
+                                                i.description))}
                                             </span>
                                         )
                                     })

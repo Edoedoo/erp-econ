@@ -1,36 +1,27 @@
+export const engineRoute = ({
+  path = "",
+  // params = {},
+  // query = {},
+  state = {},
+  replace = false,
+}) => {
+  let finalPath = path;
 
-export const engineRoute = ({ path = "", params = {}, query = {}, state = {}, replace = false, }) => {
+  // Object.entries(params).forEach(([key, value]) => {
+  //   finalPath = finalPath.replace(`:${key}`, value);
+  // });
 
-    let finalPath = path
+  // const searchParams = new URLSearchParams(query);
+  // const queryString = searchParams.toString()
 
-    Object.entries(params).forEach(([key, value]) => {
-        finalPath = finalPath.replace(
-            `:${key}`,
-            value
-        )
-    })
+  // if (queryString) {
+  //     finalPath += `?${queryString}`
+  // }
 
-    const searchParams = new URLSearchParams(query)
-    const queryString = searchParams.toString()
-
-    if (queryString) {
-        finalPath += `?${queryString}`
-    }
-
-    if (replace) {
-        window.history.replaceState(
-            state,
-            "",
-            finalPath
-        )
-    } else {
-        window.history.pushState(
-            state,
-            "",
-            finalPath
-        )
-    }
-    window.dispatchEvent(
-        new PopStateEvent("popstate")
-    )
-}
+  if (replace) {
+    window.history.replaceState(state, "", finalPath);
+  } else {
+    window.history.pushState(state, "", finalPath);
+  }
+  window.dispatchEvent(new PopStateEvent("popstate"));
+};
